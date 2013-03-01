@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag 'atop' %>
+
+<h1>INEX Report Posting System (not firm)</h1> 
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td rowspan="2"> <%= image_tag ("top.gif") %></td>
+    <td><%= image_tag ("topr.gif") %></td>
+  </tr>
+  <tr>
+    <td >
+      <table border="0" cellpadding="1" cellspacing="0">
+	<%= form_tag sessions_path do %>  
+	<tr>
+	  <div class="field">  
+	    <td>
+	      <%= label_tag :account %>  
+	    </td>
+	    <td>
+	      <%= text_field_tag :account, params[:account] %>  
+	    </td>
+	    
+	  </div>  
+	</tr>
+	<tr>
+	  <div class="field">  
+	    <td>
+	      <%= label_tag :password %>  
+	    </td>
+	    <td>
+	      <%= password_field_tag :password %>  
+	    </td>
+	  </div> 
+	</tr>
+      </table>
+      <br>
+      <div class="actions" align="center"><%= submit_tag "ログイン" %>
+      </div> 
+    </td>
+  </tr>
+</table>
+<% end %> 
+

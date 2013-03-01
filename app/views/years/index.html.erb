@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<h1>年度更新</h1>
+<div id="mainbody">
+  <div id="container">
+    <div id="mainbox">
+      <div id="mainfield">
+	<!-- メインコンテンツ  -->
+	<p> 今は <b><%= p @thisyear.year %> 年度</b>です. 年度を更新しますか？</p>
+	<ul>
+	  <li> 本当に年度を更新てよいのか今一度確認してください. 年度を戻すのは面倒な作業です. これは仕様です.</li>
+	  <li> 年度を更新するために必要な手続きは 2 つです.</li>
+	  <li> まず, 以下のチェックボックスにチェックを入れ, 「年度更新する」ボタンを押してください. これで web 上での年度更新ができます </li>
+	</ul>
+	<%= form_tag({:action => "index"}) do %>
+	<%= check_box_tag('updateyear', value='1')%>
+	<%= submit_tag '年度更新する' %>
+	<% end %>
+	<ul>
+	  <li> 次にデータベースの更新です. この作業は端末からコマンドを打ち込んでください. </li>
+	</ul>
+      </div>
+    </div>
+    <div id="sidebox">
+      <div id="sidemenu">
+	<!-- サイドメニュー  -->
+	<%= render 'shared/sidemenu-public' %>
+      </div>
+    </div>
+  </div>
+</div>
+

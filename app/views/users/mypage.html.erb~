@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<h1>マイページ</h1>
+ようこそ <%= current_user.account %> さん
+<h2>お知らせ</h2>
+<ul>
+  <li>2012/07/27 </li>
+  <ul>
+    <li>ファイルアップロード機能実装しました. ファイルアップロードからアップロードできます. 今は画像ファイルのみアップできます</li>
+    <li>レポートに画像貼り付けられるようになりました. 本文に 「img(filename)」と書くと, filename で指定した画像がレポートに貼り付けられます</li>
+  </ul>
+  <li>2012//07/26</li> 
+<ul>
+    <li>レポート一覧にタグ検索機能をつけました</li>
+    <li>レポートにハイパーリンクを埋め込めるようにしました「link_to(URL)」と書くと, URL がリンクになります. ただし, URL は http で始めなければ読み込まれません.</li>
+</ul>
+</ul>
+<p>
+<% unless @role["#{current_user.role_id}"] == '受講生' %>
+<h2>管理者メニュー</h2>
+<p>　　
+  <%= link_to 'ユーザ情報変更', users_path %> |
+  <%= link_to 'タグ編集', tags_path %> 
+</p>
+<% end %>
+<h2>メニュー</h2>
+<p>　　
+<%= link_to '新規作成', new_user_repbody_path(current_user.id) %> |
+<%= link_to 'ファイルアップロード', fileupload_path %> |
+<%= link_to 'ファイル一覧', user_fileupload_index_path(current_user.id) %> |
+<%= link_to 'レポート一覧', repbodies_path %> |
+<%= link_to 'ユーザ一覧', users_path %> |
+<%= link_to 'ログアウト', logout_path %> |
+<%= link_to 'アカウント情報', user_path(current_user) %> |
+<%= link_to 'パスワード変更', chpass_path(current_user.id) %> 
+</p>
+
+<h2>本テスト版に関するご意見</h2>
+ご意見は [新規作成] でタグ「目安板」を選択することで提出できます. コメントもご自由にどうぞ. Staff, TA, VTA 権限で自分のアカウントも作れます.
+<p>　　
+  <%= link_to 'ご意見一覧', opinion_path %> (レポート一覧からタグ「目安板」で絞り込んでも結果は同じです)
+</p>
+
+
+
+<h2><%= current_user.account %> さんのレポート提出状況は以下のようになっています.</h2>
+
+<table border="1" width="800px">
+  <tr>
+    <th></th>
+    <th>User</th>
+    <th>Tag</th>
+    <th>LastUpDate</th>
+    <th>Title</th>
+    <th>コメント有無</th>
+    <th colspan="3">アクション</th>
+  </tr>
+<% nm = 1%>
+<% @repbody.each do |repbody| %>
+  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+
+    <td><%= nm %></td>
+    <td><%= repbody.user.username %></td>
+    <td><%= repbody.tag.tag %><%#= @tag_name[repbody.tag_id.to_i - 1].to_s %></td>
+    <td><%= truncate(repbody.updated_at.to_s, :length => 19, :omission => '') %></td>
+    <td><%= repbody.title %></td>
+    <td><%= repbody.commentexis %></td>
+    <td><%= link_to 'Show', user_repbody_path(repbody.user_id, repbody.id) %></td>
+
+    <td>
+      <% if current_user.id.to_i == repbody.user_id.to_i %>
+      <%= link_to 'Edit', edit_user_repbody_path(current_user, repbody.id) %>
+      <% end %>
+    </td>
+    <td><%= link_to 'Destroy', user_repbody_path(current_user, repbody.id), confirm: 'ホントに消しちゃうの？', method: :delete %></td>
+
+  </tr>
+<% nm = nm + 1 %>
+<% end %>
+</table>

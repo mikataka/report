@@ -1,0 +1,92 @@
+<h1><%= @h1%></h1>
+
+<div id="mainbody">
+  <div id="container">
+    <div id="mainbox">
+      <div id="mainfield">
+	<!-- メインコンテンツ  -->
+	<p>
+	  <%= @yearserch%>
+	  タグで絞り込む？
+	  <%= form_tag({:action => "indexyear"}) do %>
+	  <%= select_tag('yearserch', options_from_collection_for_select(@years, :id, :year, @yearserch ), :prompt => "すべてを表示", :onchange => 'submit();') %>
+	  <% end %>
+	</p>
+	<%= @papa%>
+	<br>
+	<% unless @role["#{current_user.role.id}"] == "受講生" %>
+	<table border="1" width="700px">
+	  <tr>
+	    <th>Year</th>
+	    <th>Account</th>
+	    <th>Username</th>
+	    <th>Studentid</th>
+	    <th>Email</th>
+	    <th>Role</th>
+	    <th>Grade</th>
+	    <th>レポートを見る</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+	  
+	  <% @users.each do |user| %>
+	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+	    <td><%= user.year %></td>
+	    <td><%= user.account %></td>
+	    <td><%= user.username %></td>
+	    <td><%= user.studentid %></td>
+	    <td><%= user.email %></td>
+	    <td><%= @role["#{user.role_id}"] %></td>
+	    <td><%= user.grade %></td>
+	    <!--    <td><%= user.password_digest %></td> -->
+	    <td><%= link_to 'Report', userreportshow_path(user.id) %></td>
+	    <td><%= link_to 'Show', user %></td>
+	    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+	    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+	  </tr>
+	  <% end %>
+	</table>
+	
+	<br />
+	<% else %>
+	<table border="1" width="700px">
+	  <tr>
+	    <th>Account</th>
+	    <th>Username</th>
+	    <th>Studentid</th>
+	    <th>Role</th>
+	    <th>Grade</th>
+	    <th>レポートを見る</th>
+	  </tr>
+	  
+	  <% @users.each do |user| %>
+	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+	    <td><%= user.account %></td>
+	    <td><%= user.username %></td>
+	    <td><%= user.studentid %></td>
+	    <td><%= @role["#{user.role_id}"] %></td>
+	    <td><%= user.grade %></td>
+	    <!--    <td><%= user.password_digest %></td> -->
+	    <td><%= link_to 'Show', userreportshow_path(user.id) %></td>
+	  </tr>
+	  <% end %>
+	</table>
+	<br />
+	<% end %>
+	
+      </div>
+    </div>
+    <div id="sidebox">
+      <div id="sidemenu">
+	<!-- サイドメニュー  -->
+	<%= render 'shared/sidemenu-adm' %>
+	<%= render 'shared/sidemenu-public' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

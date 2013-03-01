@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+test:
+  account: testuser
+  username: テストユーザ
+  studentid: 99999999
+  email: test@ep.sci.hokudai.ac.jp
+  role_id: 40825747
+  grade: M2
+  password_digest: $2a$10$ZCLS4wqw06mG0PRsaGnLuOgVifLmizeU5bprYeya4jH1Opxd7ichK
+  machine: joho18

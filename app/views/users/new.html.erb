@@ -1,0 +1,75 @@
+<h1>ユーザの新規作成</h1>
+
+
+<div id="mainbody">
+  <div id="container">
+    <div id="mainbox">
+      <div id="mainfield">
+	<!-- メインコンテンツ  -->
+	
+
+	
+	<%= form_for @user do |f| %>  
+	<% if @user.errors.any?%>  
+	<div class="error_messages">  
+	  <h2>Form is invalid</h2>  
+	  <ul>  <% for message in @user.errors.full_messages %>  
+	    <li><%= message %></li>  
+	    <% end %>  
+	  </ul>  
+	</div>  
+	<% end %>  
+	<div class="field">  
+	  <%= f.label :アカウント名 %>  
+	  <%= f.text_field :account %>  
+	</div>  
+	<div class="field">  
+	  <%= f.label :フルネーム %>  
+	  <%= f.text_field :username %>  
+	</div>  
+	<div class="field">  
+	  <%= f.label :学籍番号 %>  
+	  <%= f.text_field :studentid %>  
+	</div>  
+	<div class="field">  
+	  <%= f.label :メールアドレス %>  
+	  <%= f.text_field :email %>  
+	</div>  
+	<div class="field">  
+	  <%= f.label :身分 %>  
+	  <%= f.collection_select(:role_id, @role, :id, :position)%>  
+	</div>  
+	<div class="field">  
+	  <%= f.label :学年 %>  
+	  <%= f.text_field :grade%>  
+	</div>  
+	<div class="field">  
+	  <%= f.label :情報実験機名 %>  
+	  <%= f.text_field :machine%>  
+	</div>  
+	<div class="field">  
+	  <%= f.label :パスワード %>  
+	  <%= f.password_field :password %> 
+	</div>  
+	<div class="field">  
+	  <%= f.label :パスワード確認 %>  
+	  <%= f.password_field :password_confirmation %>  
+	</div>  
+	<div class="actions">
+	  <%= f.submit %>
+	</div> 
+	<% end %> 
+      </div>
+    </div>
+    <div id="sidebox">
+      <div id="sidemenu">
+	<!-- サイドメニュー  -->
+	<%= render 'shared/sidemenu-public' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

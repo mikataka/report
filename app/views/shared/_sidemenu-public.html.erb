@@ -1,0 +1,14 @@
+<h2> ログイン名</h2>
+<p> <%= current_user.account %>
+	<h2>一般メニュー</h2>
+	<p>
+	  <%= link_to 'マイページ', mypage_path(current_user.id) %><br />
+	  <%= link_to 'レポート新規作成', new_user_repbody_path(current_user.id) %> <br />
+	  <%= link_to 'ファイルアップロード', fileupload_path %> <br />
+	  <%= link_to 'ファイル一覧', user_fileupload_index_path(current_user.id) %> <br />
+	  <%= link_to 'レポート一覧', repbodies_path %> <br />
+	  <%= link_to 'ユーザ一覧', users_path %> <br />
+	  <%= link_to 'アカウント情報', user_path(current_user) %> <br />
+	  <%= link_to 'パスワード変更', chpass_path(current_user.id) %> <br />
+	  <%= link_to 'ログアウト', logout_path %> <br />
+	</p>

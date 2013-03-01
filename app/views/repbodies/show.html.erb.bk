@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<%= current_user.account %> さんのレポート提出状況は以下のようになっています.
+<!-- さんのレポート提出状況は以下のようになっています.-->
+
+<p>
+  <b>User:</b>
+  <%= @repbody.user.account %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @repbody.tag_id %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @repbody.date %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @repbody.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @repbody.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_repbody_path(current_user, @repbody.user_id) %> 
+<%= link_to 'New', new_user_repbody_path(current_user, @repbody.user_id) %> 
+<%#= link_to 'Back', repbodies_path %>

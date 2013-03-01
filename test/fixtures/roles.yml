@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+student:
+  position: "受講生"
+
+ta:
+  position: TA
+
+vta:
+  position: VTA
+
+staff:
+  position: Staff

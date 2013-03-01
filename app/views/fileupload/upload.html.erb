@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<h1>ファイルアップローダ</h1>
+<p>
+  現在画像ファイル (.jpg, .gif, .png) のみアップロード可能. 1 ファイルのサイズは 1MB までです.
+</p>
+<%= form_tag({ :action => 'upload_process' }, :multipart => true ) do %>
+<label> ファイルを指定: 
+  <%= file_field_tag 'upfile', { :size => 50 } %>
+</label>
+<label> ファイルの説明: 
+  <%= text_area_tag 'caption' %>
+</label>
+
+<%= submit_tag 'アップロード' %>
+<% end %>
+<br>
+<%= link_to 'マイページ', mypage_path(current_user.id) %>

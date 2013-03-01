@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<%= current_user.account %> さんのレポート提出状況は以下のようになっています.
+<!-- さんのレポート提出状況は以下のようになっています.-->
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>User</th>
+    <th>Tag</th>
+    <th>Date</th>
+    <th>Title</th>
+    <th>Body</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @repbody.each do |repbody| %>
+  <tr>
+    <td><%= repbody.id %></td>
+    <td><%= repbody.user_id %></td>
+    <td><%= repbody.tag_id %></td>
+    <td><%= repbody.date %></td>
+    <td><%= repbody.title %></td>
+    <td><%= repbody.body %></td>
+    <td><%#= link_to 'Show', repbody %></td>
+    <td>
+      <% if current_user.id.to_i == repbody.user_id.to_i %>
+      <%= link_to 'Edit', edit_user_repbody_path(current_user, repbody.id) %>
+      <% end %>
+    </td>
+    <td><%#= link_to 'Destroy', repbody, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%#= link_to 'Edit', edit_user_repbody_path(current_user.id, @repbody) %> 
+<%= link_to 'New', new_user_repbody_path(current_user) %> 
+<%#= link_to 'Back', repbodies_path %>

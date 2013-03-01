@@ -1,0 +1,5 @@
+class AddRepbodyIdToComments < ActiveRecord::Migration
+  def change
+    add_column :comments, :repbody_id, :integer
+  end
+end

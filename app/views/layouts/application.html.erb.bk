@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Report</title>
+  <%= stylesheet_link_tag 'application' %>
+  <%#= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="hedder">
+    <h1>レイアウトテスト中</h1>
+  </div>
+  <div id="mainbox">
+    <%= yield %>
+  </div>
+<div id="sidemenu">
+<p><b>MENU</b></p>
+<%= link_to 'マイページ', mypage_path(current_user.id) %> <br>
+<%= link_to '新規作成', new_user_repbody_path(current_user.id) %><br>
+<%= link_to 'ファイルアップロード', fileupload_path %> <br>
+<%= link_to 'ファイル一覧', user_fileupload_index_path(current_user.id) %> <br>
+<%= link_to 'レポート一覧', repbodies_path %><br>
+<%= link_to 'ユーザ一覧', users_path %><br>
+<%= link_to 'ログアウト', logout_path %><br>
+<%= link_to 'アカウント情報', user_path(current_user) %><br>
+<%= link_to 'パスワード変更', chpass_path(current_user.id) %> 
+</div>
+<div id="footer">
+  <p>
+</body>
+</html>

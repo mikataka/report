@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>マイページ</h1>
+ようこそ <%= current_user.account %> さん
+<div id="mainbody">
+  <div id="container">
+    <div id="mainbox">
+      <div id="mainfield">
+	<h2><%= current_user.account %> さんのレポート提出状況は以下のようになっています.</h2>
+
+	<table border="1" width="700px">
+	  <tr>
+	    <th></th>
+	    <th>User</th>
+	    <th>Tag</th>
+	    <th>LastUpDate</th>
+	    <th>Title</th>
+	    <th>コメント有無</th>
+	    <th colspan="3">アクション</th>
+	  </tr>
+	  <% nm = 1%>
+	  <% @repbody.each do |repbody| %>
+	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+	    <td><%= nm %></td>
+	    <td><%= repbody.user.username %></td>
+	    <td><%= repbody.tag.tag %><%#= @tag_name[repbody.tag_id.to_i - 1].to_s %></td>
+	    <td><%= truncate(repbody.updated_at.to_s, :length => 19, :omission => '') %></td>
+	    <td><%= repbody.title %></td>
+	    <td><%= repbody.commentexis %></td>
+	    <td><%= link_to 'Show', user_repbody_path(repbody.user_id, repbody.id) %></td>
+	    
+	    <td>
+	      <% if current_user.id.to_i == repbody.user_id.to_i %>
+	      <%= link_to 'Edit', edit_user_repbody_path(current_user, repbody.id) %>
+	      <% end %>
+	    </td>
+	    <td><%= link_to 'Destroy', user_repbody_path(current_user, repbody.id), confirm: 'ホントに消しちゃうの？', method: :delete %></td>
+	    
+	  </tr>
+	  <% nm = nm + 1 %>
+	  <% end %>
+	</table>
+      </div>
+    </div>
+    <div id="sidebox">
+      <div id="sidemenu">
+	<%= render 'shared/sidemenu-adm' %>
+	<%= render 'shared/sidemenu-public' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+

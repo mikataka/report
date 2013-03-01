@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @repbodyidshow.title %></h1>
+<!-- さんのレポート提出状況は以下のようになっています.-->
+
+<p>
+  <b>User:</b>
+  <%= @repbodyidshow.user.account %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @tag.tag %>
+</p>
+
+<p>
+  <b>更新履歴:</b><br>
+  <% @updates.each do |update|%>
+  <%= update.date %>: <%= update.comment %><br>
+  <% end %>
+</p>
+
+
+
+
+<table width="800px" border="0" cellspacing="1" bgcolor="#c71585">
+  <tr bgcolor="#c71585" align="left">
+    <th>
+      <p>
+	<font color="#ffffff">
+	<b>Title:</b>
+	<%= @repbodyidshow.title %>
+	</font>
+      </p>
+
+    </th>
+  </tr>
+  <tr>
+    <td bgcolor="#ffffff">
+      <pre><%=raw preautolink(@repbodyidshow.body) -%></pre>
+    </td>
+  </tr>
+</table>
+<% unless @roleh[current_user.role_id.to_i] == '受講生' %>
+<%= link_to 'コメントする', new_user_repbody_comment_path(current_user, @repbodyidshow.id) %></td>
+<% end %>
+
+<h2>コメント</h2>
+
+<% @comments.each do |comment| %>
+<table width="800px" border="0" cellspacing="1" bgcolor="#c71585">
+  <tr bgcolor="#c71585" align="left">
+    <th>
+      <font color="#ffffff">
+      <%= p @usernameh["#{comment.user_id}"] %> | <%= comment.updated_at %>
+      </font>
+    </th>
+  </tr>
+  <tr>
+    <td bgcolor="#ffffff">
+      <pre><%= comment.body %></pre>
+    </td>
+  </tr>
+</table>
+<p>--------------------------</p>
+<%# if current_user.id.to_i == repbody.user_id.to_i %>
+<%#= link_to 'Edit', edit_user_repbody_comment_path(current_user, @repbody.id, comment.id) %>
+<%# end %>
+<%#= link_to 'コメント', new_user_repbody_comment_path(current_user, repbody.id) %>
+<% end %>
+<% unless @comments[0] %>
+<p> コメントはまだ何もありません.</p>
+<% end %>
+
+
+<p>
+  このページの URL <br>
+  <%= @urlhere %>
+</p>
+<%#= link_to 'Edit', edit_user_repbody_path(current_user, @repbodyidshow.user_id) %> 
+<%#= link_to 'New', new_user_repbody_path(current_user, @repbodyidshow.user_id) %> 
+<%= link_to 'マイページ', mypage_path(current_user) %>
+<%= link_to '一覧へ戻る', repbodies_path %>

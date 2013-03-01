@@ -1,0 +1,25 @@
+<h1> <%= @h1 %> </h1>
+<p>
+  <%= link_to 'マイページ', mypage_path(current_user.id) %> | 
+  <%= link_to 'ファイルアップロード', fileupload_path %>
+</p>
+<table border="1" width="800px">
+  <tr>
+    <th>サムネイル</th>
+    <th>ファイル名</th>
+    <th>説明</th>
+    <th>うp日</th>
+  </tr>
+
+
+<% @myfiles.each do |myfile| %>
+
+  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+    <% filename = myfile.filename %>
+    <td><%= image_tag "/picture/#{current_user.id}/#{filename}", :size => '120x90'  %></td>
+    <td><%= myfile.filename %></td>
+    <td><%= myfile.caption %></td>
+    <td><%= truncate(myfile.created_at.to_s, :length => 19, :omission => "") %></td>
+  </tr>
+<% end %>
+</table>

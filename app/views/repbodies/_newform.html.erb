@@ -1,0 +1,53 @@
+<div id="mainbody">
+  <div id="container">
+    <div id="mainbox">
+      <div id="mainfield">
+	<!-- メインコンテンツ  -->
+	<%= form_for([current_user, @repbody]) do |f| %>
+	<% if @repbody.errors.any? %>
+	<div id="error_explanation">
+	  <h2><%= pluralize(@repbody.errors.count, "error") %> prohibited this repbody from being saved:</h2>
+	  
+	  <ul>
+	    <% @repbody.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+	    <% end %>
+	  </ul>
+	</div>
+	<% end %>
+	<% params[:hoge] = "menimeni"%>
+	<div class="field">
+	  <%= f.hidden_field :user_id %>
+	</div>
+	
+	<div class="field">
+	  <%= f.label :タグ %>
+	  <%= f.collection_select(:tag_id, @tag, :id, :tag)%>
+	</div>
+	
+	
+	<div class="field">
+	  <%= f.label :タイトル %><br />
+	  <%= f.text_field :title %>
+	</div>
+	<div class="field">
+	  <%= f.label :本文 %><br />
+	  <%= f.text_area :body %>
+	</div>
+	<% hidden_field :lock, :lock_version %>
+	
+	
+	<div class="actions">
+	  <%= f.submit("submit",:disable_with => "処理中") %>
+	</div>
+	<% end %>
+      </div>
+    </div>
+    <div id="sidebox">
+      <div id="sidemenu">
+	<!-- サイドメニュー  -->
+	<%= render 'shared/sidemenu-public' %>
+      </div>
+    </div>
+  </div>
+</div>

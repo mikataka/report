@@ -1,0 +1,43 @@
+<h1>目安板</h1>
+
+<p>
+  ご意見頂戴誠にありがとうございます. このページはタグ「目安板」を集めたページです. 新 RPS に関するご意見はテストも兼ねてこちらへどうぞ. こちらへと書きましたが, [マイページ]=>[新規投稿] でタグを [目安板] にしてください.
+</p>
+
+<table border="1" width="800px">
+  <tr>
+    <th>User</th>
+    <th>Tag</th>
+    <th>Date</th>
+    <th>Title</th>
+    <th >コメント有無</th>
+    <th colspan="3">アクション</th>
+  </tr>
+
+
+<% @repbodies.each do |repbody| %>
+
+  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+    <td><%= p @usernameh["#{repbody.user_id}"] %></td>
+    <td><%= @tag_name[repbody.tag_id.to_i - 1].to_s %></td>
+    <td><%= truncate(repbody.updated_at.to_s, :length => 19, :omission => '') %></td>
+    <td><%= repbody.title %></td>
+    <td><%= repbody.commentexis.to_s %></td>
+    <td><%= link_to 'Show', user_repbody_path(repbody.user_id, repbody.id) %></td>
+    <td>
+      <% if current_user.id.to_i == repbody.user_id.to_i %>
+      <%= link_to 'Edit', edit_user_repbody_path(current_user, repbody.id) %>
+      <% end %>
+    </td>
+    <td>
+      <% unless current_user.role_id.to_i == @role.id.to_i %>
+      <%= link_to 'コメント', new_user_repbody_comment_path(current_user, repbody.id) %></td>
+      <% end %>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'マイページ', mypage_path(current_user.id) %>
