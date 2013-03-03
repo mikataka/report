@@ -21,6 +21,8 @@ Report::Application.routes.draw do
   resources :sessions 
   get "login" => "sessions#new", :as => "login" 
   get "logout" => "sessions#destroy", :as => "logout" 
+  get "userapplicate" => "users#newext", :as => "userapplicate" 
+  match '/acception/:id' => 'users#acception', :as => "acception"
   match '/mypage/:id' => 'users#mypage', :as => "mypage", :via => "get"
   match '/chpass/:id' => 'users#chpass', :as => "chpass"
   match '/userreportshow/:id' => 'users#userreportshow', :as => "userreportshow", :via => "get"

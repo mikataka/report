@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  skip_before_filter :check_logined
-  before_filter :edit_check, :only => ['new', 'create', 'edit', 'destroy']
+  skip_before_filter :check_logined, :only => ['newext', 'createext']
+  before_filter :edit_check, :only => ['new', 'create', 'edit', 'destroy', 'acception']
   before_filter :mypage_check, :only => ['mypage', 'chpass', 'show']
 
   # GET /users
@@ -27,9 +27,9 @@ class UsersController < ApplicationController
     else
       @users = User.find_all_by_year(@thisyear.year.to_i)#, :order => 'studentid DESC')
 #      @users = User.find(:all)#, :order => 'studentid DESC')
-      @h1 = "全年度ユーザ一覧"
+      @h1 = "#{@thisyear.year.to_i} 年度ユーザ一覧"
     end
-
+    @user_waiting = User.find(:all, :conditions => {:acception => 'f', :owner => current_user.account.to_s} )
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -57,8 +57,7 @@ class UsersController < ApplicationController
       @users = User.find(:all)#, :order => 'studentid DESC')
       @h1 = "全年度ユーザ一覧"
     end
-
-
+    @user_waiting = User.find(:all, :conditions => {:acception => 'f', :owner => current_user.account.to_s} )
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -86,6 +85,14 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def newext
+    @user = User.new
+    @role = Role.all
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @user }
+    end
+  end
 
   # GET /users/1/edit
   def edit
@@ -101,6 +108,7 @@ class UsersController < ApplicationController
     @role = Role.all
     @thisyear = Year.find(:first, :conditions => {:default => 't'})
     @user.year = @thisyear.year.to_i
+    @user.acception = 't'
 #    respond_to do |format|
       if @user.save
 #        @repbody = @user.create_repbody( :user_id => @user.id )
@@ -115,6 +123,29 @@ class UsersController < ApplicationController
       end
     end
 
+  def createext
+    @user = User.new(params[:user])
+    @role = Role.all
+    @thisyear = Year.find(:first, :conditions => {:default => 't'})
+    @user.year = @thisyear.year.to_i
+    @user.acception = 'f'
+    @user.role_id = 925085493
+    mail = Usermail.newuser
+    mail.deliver
+#    respond_to do |format|
+      if @user.save
+#        @repbody = @user.create_repbody( :user_id => @user.id )
+        render 'accept'
+#        redirect_to users_path, :notice => '【メッセージ】ユーザ登録申請をしました.'
+#        format.html { redirect_to @user, notice: 'User was successfully created.' }
+#        format.json { render json: @user, status: :created, location: @user }
+#render "new"
+      else
+        render 'sessions/new'
+#        format.html { render action: "new" }
+#        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
 
   # PUT /users/1
   # PUT /users/1.json
@@ -193,6 +224,19 @@ class UsersController < ApplicationController
     @role = Role.all
   end
 
+  def acception
+    @user = User.find(params[:id])
+    @user.acception = 't'
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to users_url, notice: '【メッセージ】ユーザを承認しました' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "index" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   
   private
   def edit_check

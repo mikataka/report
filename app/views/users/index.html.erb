@@ -1,10 +1,11 @@
-<h1><%= @h1%></h1>
+<h1>ユーザ一覧</h1>
 
 <div id="mainbody">
   <div id="container">
     <div id="mainbox">
       <div id="mainfield">
 	<!-- メインコンテンツ  -->
+	<h2><%= @h1 %></h2>
 	<p>
 	  タグで絞り込む？
 	  <%= form_tag({:action => "indexyear"}) do %>
@@ -31,6 +32,7 @@
 	  </tr>
 	  
 	  <% @users.each do |user| %>
+	  <% if user.acception %>
 	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
 	    <td><%= user.year %></td>
 	    <td><%= user.account %></td>
@@ -45,6 +47,7 @@
 	    <td><%= link_to 'Edit', edit_user_path(user) %></td>
 	    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
 	  </tr>
+	  <% end %>
 	  <% end %>
 	</table>
 	
@@ -61,6 +64,7 @@
 	  </tr>
 	  
 	  <% @users.each do |user| %>
+	  <% if user.acception %>
 	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
 	    <td><%= user.account %></td>
 	    <td><%= user.username %></td>
@@ -71,10 +75,42 @@
 	    <td><%= link_to 'Show', userreportshow_path(user.id) %></td>
 	  </tr>
 	  <% end %>
+	  <% end %>
 	</table>
 	<br />
 	<% end %>
-	
+
+
+	<% unless @role["#{current_user.role.id}"] == "受講生" %>
+	<% if @user_waiting.length != 0 %>
+	<h2> 承認待ちユーザがいます</h2>
+	<table border="1" width="700px">
+	  <tr>
+	    <th>Account</th>
+	    <th>Username</th>
+	    <th>Studentid</th>
+	    <th>Role</th>
+	    <th>Grade</th>
+	    <th>承認</th>
+	    <th>破棄</th>
+	  </tr>
+	  
+	  <% @user_waiting.each do |user| %>
+	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+	    <td><%= user.account %></td>
+	    <td><%= user.username %></td>
+	    <td><%= user.studentid %></td>
+	    <td><%= @role["#{user.role_id}"] %></td>
+	    <td><%= user.grade %></td>
+	    <td><%= link_to '承認', acception_path(user.id), confirm: "アカウント '#{user.account}' を承認します." %></td>
+	    <td><%= link_to '棄却', user, confirm: "アカウント #{user.account} の申請を棄却します", method: :delete %></td>
+	  </tr>	
+
+	<% end %>	
+	<% end %>	
+	</table>
+	<br />
+	<% end %>	
       </div>
     </div>
     <div id="sidebox">

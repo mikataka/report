@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 #  attr_accessible :account, :email, :grade, :password_digest, :role_id, :studentid, :username
-  attr_accessible :account, :email, :grade, :password, :role_id, :studentid, :username, :password_confirmation, :machine
+  attr_accessible :account, :email, :grade, :password, :role_id, :studentid, :username, :password_confirmation, :machine, :acception, :owner
   belongs_to :role
   has_many :repbodies
   has_many :myfiles

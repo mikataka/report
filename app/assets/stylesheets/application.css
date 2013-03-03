@@ -35,7 +35,9 @@ h1 {
     background: #c71585;
     line-height: 150%;
 }
-
+h2 {
+    border-bottom: 1px;
+}
 
 
 #footer {
