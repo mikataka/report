@@ -127,10 +127,12 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @role = Role.all
     @thisyear = Year.find(:first, :conditions => {:default => 't'})
+    @owner = User.find_by_account(@user.owner)
     @user.year = @thisyear.year.to_i
     @user.acception = 'f'
-    @user.role_id = 925085493
-    mail = Usermail.newuser
+    @user.role_id = 4
+#    @user.role_id = 925085493
+    mail = Usermail.newuser(@owner.username, @user.username, @owner.email, @user.email)
     mail.deliver
 #    respond_to do |format|
       if @user.save

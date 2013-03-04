@@ -7,12 +7,17 @@ class Usermail < ActionMailer::Base
   #
   #   en.usermail.newuser.subject
   #
-  def newuser
+  def newuser(ownername, username, ownermail, usermail)
+    @ownername = ownername
+    @username = username
+    @ownermail = ownermail
+    @usermail = usermail
+
     @greeting = "Hi"
     mail(
-         :to => "takuya@ep.sci.hokudai.ac.jp",
+         :to => "#{@usermail}, #{@ownermail}",
          :subject => '通知メール',
-         :return_path => "takuya@ep.sci.hokudai.ac.jp"
+         :return_path => "#{@ownermail}"
           )
   end
 end

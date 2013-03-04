@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(:version => 20130302152309) do
 
   create_table "comments", :force => true do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
+    t.integer  "repbody_id"
     t.date     "date"
     t.text     "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "repbody_id"
   end
 
   create_table "myfiles", :force => true do |t|

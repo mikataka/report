@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
 #  attr_accessible :account, :email, :grade, :password_digest, :role_id, :studentid, :username
-  attr_accessible :account, :email, :grade, :password, :role_id, :studentid, :username, :password_confirmation, :machine, :acception, :owner
+  attr_accessible :account, :email, :grade, :password, :role_id, :studentid, :username, :password_confirmation, :machine, :acception, :owner, :year #, :password_digest
   belongs_to :role
   has_many :repbodies
   has_many :myfiles
   has_many :comments, :through => :repbodies
 
 #  has_one :repbody
+#=begin
   has_secure_password 
   validates_presence_of :password, :on => :create 
   validates :account, :presence => true, 
@@ -39,4 +40,6 @@ class User < ActiveRecord::Base
                          :message => "は半角英数字で記入してください. "
                        },
             :on => :create
+#=end
 end
+
