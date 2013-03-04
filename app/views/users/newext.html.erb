@@ -11,39 +11,39 @@
 </div>  
 <% end %>  
 <div class="field">  
-  <%= f.label :アカウント名 %>  
+  <%= f.label :アカウント名 %> (半角英数字でわかりやすいもの. ex. taro)<br /> 
   <%= f.text_field :account %>  
 </div>  
-<div class="field">  
-  <%= f.label :フルネーム %>  
+<div class="field"> 
+  <%= f.label :フルネーム %> (全角で 苗字 + 名前. 苗字と名前の間には半角スペースをいれる. ex. 坂本 太郎) <br />  
   <%= f.text_field :username %>  
 </div>  
 <div class="field">  
-  <%= f.label :学籍番号 %>  
+  <%= f.label :学籍番号 %> (半角数字. ex. 29999999) <br />
   <%= f.text_field :studentid %>  
 </div>  
-<div class="field">  
-  <%= f.label :メールアドレス %>  
+<div class="field"> 
+  <%= f.label :メールアドレス %>  (inex からの情報を受け取れるメールアドレス.) <br />
   <%= f.text_field :email %>  
 </div>  
 <div class="field">  
-  <%= f.label :保証人 %>  
+  <%= f.label :保証人 %>  (担当 TA, VTA のアカウント名を半角英数字で記入.) <br />
   <%= f.text_field :owner %>  
 </div>  
 <div class="field">  
-  <%= f.label :学年 %>  
+  <%= f.label :学年 %> (大文字アルファベット 1 文字 (学部生なら B) + 数字 1 文字で記入. ex. B3) <br />
   <%= f.text_field :grade%>  
 </div>  
 <div class="field">  
-  <%= f.label :情報実験機名 %>  
+  <%= f.label :情報実験機名 %>  (自分の情報実験機名を 'johoXX' (XX は 2 文字の数字) で記入. ex. joho05)<br />
   <%= f.text_field :machine%>  
 </div>  
 <div class="field">  
-  <%= f.label :パスワード %>  
+  <%= f.label :パスワード %> (自分のログインパスワード. 後からでも変更可. ) <br />
   <%= f.password_field :password %> 
 </div>  
 <div class="field">  
-  <%= f.label :パスワード確認 %>  
+  <%= f.label :パスワード確認 %>  (確認のためもう一度入力) <br />
   <%= f.password_field :password_confirmation %>  
 </div>  
 <div class="actions">

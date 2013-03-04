@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
                        },
             :on => :create
   validates :email, :presence => true,  
+            :uniqueness => true, 
             :format => { :with => /^\S*\S@\S*/,
                          :message => "を確認してください. "
                        },

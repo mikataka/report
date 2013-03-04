@@ -141,7 +141,7 @@ class UsersController < ApplicationController
 #        format.json { render json: @user, status: :created, location: @user }
 #render "new"
       else
-        render 'sessions/new'
+        render 'newext'
 #        format.html { render action: "new" }
 #        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
