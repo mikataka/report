@@ -108,7 +108,9 @@ class RepbodiesController < ApplicationController
   # GET /repbodies/new.json
   def new
     @repbody = Repbody.new
+    @hyperlink = Hyperlink.new
     @tag = Tag.all
+
     if current_user.id
       @repbody.user_id = current_user.id
     end
