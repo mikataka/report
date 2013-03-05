@@ -132,11 +132,12 @@ class UsersController < ApplicationController
     @user.acception = 'f'
     @user.role_id = 4
 #    @user.role_id = 925085493
-    mail = Usermail.newuser(@owner.username, @user.username, @owner.email, @user.email)
-    mail.deliver
+
 #    respond_to do |format|
       if @user.save
 #        @repbody = @user.create_repbody( :user_id => @user.id )
+        mail = Usermail.newuser(@owner.username, @user.username, @owner.email, @user.email)
+        mail.deliver
         render 'accept'
 #        redirect_to users_path, :notice => '【メッセージ】ユーザ登録申請をしました.'
 #        format.html { redirect_to @user, notice: 'User was successfully created.' }
