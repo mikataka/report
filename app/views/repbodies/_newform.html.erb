@@ -40,14 +40,14 @@
 	<%#= fields_for :hyperlinks do |hyperlink_form| %>
 
 	<div id="disp1">
-	  <form>
+
 	    <input type="button" value="参考 URL 追加欄を表示" onclick="Hyoji1(0)">
-	  </form>
+
 	</div>
 	<div id="disp2" style="display:none;">
-	  <form>
+
   	    <input type="button" value="参考 URL 入力欄を非表示" onclick="Hyoji1(1)">
-	  </form>
+
 	  <table>
 	    <% @slink.each_with_index do |slink, i| %>
 	    <% @slink = slink %>
