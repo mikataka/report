@@ -43,31 +43,37 @@
 	</div>
 	<% hidden_field :lock, :lock_version %>
 
-	<table >
+	<div id="disp1">
+	  <form>
+	    <input type="button" value="参考 URL 追加欄を表示" onclick="Hyoji1(0)">
+	  </form>
+	</div>
+	<div id="disp2" style="display:none;">
+	  <form>
+  	    <input type="button" value="参考 URL 入力欄を非表示" onclick="Hyoji1(1)">
+	  </form>
+	  <table >
 	    <% @slink.each_with_index do |slink, i| %>
 	    <% @slink = slink %>
-	  <tr>
-	    <td>title<%= i+1 %></td>
-	    <td><%= text_field "slink", "title", :id =>"slink_title_#{i}", :index => i%></td>
-	  </tr>
-	  <tr>
-	    <td>
-	      <!--	<label for="slink_title_<%= i %>">title</label> -->
-	      URL<%= i+1 %>
-	    </td>
-	    <!--	<label for="slink_url_<%= i %>">url</label> -->
-	    <td>
-	      <%= text_field "slink", "link", :id =>"slink_url_#{i}", :index => i  ,:rows => 10%>
-	    </td>
-	<% end %>
-	<%# end %>
-	<%# end %>
-</table>
-
-
-
-
-
+	    <tr>
+	      <td>title<%= i+1 %></td>
+	      <td><%= text_field "slink", "title", :id =>"slink_title_#{i}", :index => i%></td>
+	    </tr>
+	    <tr>
+	      <td>
+		<!--	<label for="slink_title_<%= i %>">title</label> -->
+		URL<%= i+1 %>
+	      </td>
+	      <!--	<label for="slink_url_<%= i %>">url</label> -->
+	      <td>
+		<%= text_field "slink", "link", :id =>"slink_url_#{i}", :index => i  ,:rows => 10%>
+	      </td>
+	      <% end %>
+	      <%# end %>
+	      <%# end %>
+	  </table>
+	</div>
+	
 	<br />
 	<% if @hyperlinks.empty? %>
 	<p> 現在このレポートには参考 URL はありません </p><br />
@@ -116,3 +122,21 @@
 </div>
 
 
+<script type="text/javascript">
+<!--
+
+function Hyoji1(num)
+{
+  if (num == 0)
+  {
+    document.getElementById("disp1").style.display="none";
+    document.getElementById("disp2").style.display="block";
+  }
+  else
+  {
+    document.getElementById("disp1").style.display="block";
+    document.getElementById("disp2").style.display="none";
+  }
+}
+// -->
+</script>
