@@ -4,4 +4,6 @@ class Repbody < ActiveRecord::Base
   belongs_to :tag
   has_many :comments
   has_many :updates
+  has_many :hyperlinks
+  accepts_nested_attributes_for :hyperlinks
 end

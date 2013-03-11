@@ -15,6 +15,7 @@
 	  </ul>
 	</div>
 	<% end %>
+
 	<% params[:hoge] = "menimeni"%>
 	<div class="field">
 	  <%= f.hidden_field :user_id %>
@@ -34,9 +35,31 @@
 	  <%= f.label :本文 %><br />
 	  <%= f.text_area :body %>
 	</div>
-	<% hidden_field :lock, :lock_version %>
-	
-	
+	<%# hidden_field :lock, :lock_version %>
+	<%#= field_set_tag '参考 URL' do %>
+	<%#= fields_for :hyperlinks do |hyperlink_form| %>
+	<table >
+	    <% @slink.each_with_index do |slink, i| %>
+	    <% @slink = slink %>
+	  <tr>
+	    <td>title<%= i+1 %></td>
+	    <td><%= text_field "slink", "title", :id =>"slink_title_#{i}", :index => i%></td>
+	  </tr>
+	  <tr>
+	    <td>
+	      <!--	<label for="slink_title_<%= i %>">title</label> -->
+	      URL<%= i+1 %>
+	    </td>
+	    <!--	<label for="slink_url_<%= i %>">url</label> -->
+	    <td>
+	      <%= text_field "slink", "link", :id =>"slink_url_#{i}", :index => i  ,:rows => 10%>
+	    </td>
+	<% end %>
+	<%# end %>
+	<%# end %>
+</table>
+
+
 	<div class="actions">
 	  <%= f.submit("submit",:disable_with => "処理中") %>
 	</div>

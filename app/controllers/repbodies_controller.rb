@@ -92,6 +92,7 @@ class RepbodiesController < ApplicationController
     @tag = Tag.find(@repbodyidshow.tag_id)
     @comments = Comment.find_all_by_repbody_id(@repbodyidshow.id)
     @updates = Update.find_all_by_repbody_id(@repbodyidshow.id)
+    @hyperlinks = Hyperlink.find_all_by_repbody_id(@repbodyidshow.id)
     @urlhere = request.url
     @roleh =Hash::new
     @roles = Role.all
@@ -108,7 +109,12 @@ class RepbodiesController < ApplicationController
   # GET /repbodies/new.json
   def new
     @repbody = Repbody.new
-    @hyperlink = Hyperlink.new
+      @slink = Array.new
+    for i in 1..5 do
+      @hyperlink_#{i} = Hyperlink.new
+      @slink << @hyperlink_#{i}
+    end
+
     @tag = Tag.all
 
     if current_user.id
@@ -125,6 +131,14 @@ class RepbodiesController < ApplicationController
   def edit
     @repbody = Repbody.find(params[:id])
     @tag = Tag.all
+      @slink = Array.new
+    for i in 1..5 do
+      @hyperlink_#{i} = Hyperlink.new
+      @slink << @hyperlink_#{i}
+    end
+
+    @hyperlinks = Hyperlink.find_all_by_repbody_id(@repbody.id)
+
 #    @repbodyu = Repbody.find_all_by_user_id(params[:id])
 #    @repbody = @repbody.find(params[:id])
   end
@@ -133,6 +147,19 @@ class RepbodiesController < ApplicationController
   # POST /repbodies.json
   def create
     @repbody = Repbody.new(params[:repbody])
+#    @hyperlink = Hyperlink.new(params[:hyperlinks])
+    @slink = params[:slink].to_a
+
+#    @hyperlink1 = Hyperlink.new
+#    @hyperlink2 = Hyperlink.new
+#    @hyperlink3 = Hyperlink.new
+#    @hyperlink1.attributes = {:link => "params[:hyperlinks[link[0]]]", :repbody_id => @repbody.id }
+#    @hyperlink2.attributes = {:link => "params[:hyperlinks{link[1]]]", :repbody_id => @repbody.id }
+#    @hyperlink3.attributes = {:link => "params[:hyperlinks[link[2]]]", :repbody_id => @repbody.id }
+#    @hyperlinka = [@hyperlink1,@hyperlink2,@hyperlink3]
+    
+
+
     @update = Update.new
     @current = Time.now
     @update.date = @current.strftime('%Y-%m-%d %H:%M:%S')
@@ -142,11 +169,26 @@ class RepbodiesController < ApplicationController
     @repbody.year = @thisyear.year.to_i
     respond_to do |format|
       if @repbody.save
+        for i in 0...@slink.length do
+          @hyperlink = Hyperlink.new
+          @hyperlink.repbody_id = @repbody.id
+          @hyperlink.link = @slink[i][1]['link'].to_s
+          @hyperlink.title = @slink[i][1]['title'].to_s
+          unless @hyperlink.link.empty?
+            @hyperlink.save
+          end
+        end
+
+        #        @hyperlink.repbody_id = @repbody.id
+#        @hyperlink.save
+#        @hyperlinka.each do |m|
+#            m.save
+#          end
         @update.repbody_id = @repbody.id
         @update.save
         if current_user.id
-          format.html { redirect_to user_repbody_path(current_user,@repbody.id), notice: '【メッセージ】レポートを投稿しました.' }
-#          format.html { redirect_to mypage_path(current_user.id), notice: 'Repbody was successfully created.' }
+          format.html { redirect_to user_repbody_path(current_user,@repbody.id), notice: "#{@slink} 【メッセージ】レポートを投稿しました." }
+          #          format.html { redirect_to mypage_path(current_user.id), notice: 'Repbody was successfully created.' }
           format.json { render json: @repbody, status: :created, location: @repbody }
         else
           format.html { redirect_to @repbody, notice: 'Repbody was successfully created.' }
@@ -158,16 +200,18 @@ class RepbodiesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @repbody.errors, status: :unprocessable_entity }
       end
+      end
     end
-  end
-
-  # PUT /repbodies/1
+    
+    # PUT /repbodies/1
   # PUT /repbodies/1.json
   def update
     @repbody = Repbody.find(params[:id])
     @update = Update.new
     @current = Time.now
     @repbody.date = @current.strftime('%Y-%m-%d %H:%M:%S')
+    @slink = params[:slink].to_a
+
 #    rescue ActiveRecord::StaleObjectError
 
 
@@ -179,6 +223,16 @@ class RepbodiesController < ApplicationController
         @update.comment = "レポート更新"
         @update.repbody_id = @repbody.id
         @update.save
+
+        for i in 0...@slink.length do
+          @hyperlink = Hyperlink.new
+          @hyperlink.repbody_id = @repbody.id
+          @hyperlink.link = @slink[i][1]['link'].to_s
+          @hyperlink.title = @slink[i][1]['title'].to_s
+          unless @hyperlink.link.empty?
+            @hyperlink.save
+          end
+        end
         format.html { redirect_to [current_user, @repbody ], notice: "【メッセージ】レポートを更新しました." }
         format.json { head :no_content }
 

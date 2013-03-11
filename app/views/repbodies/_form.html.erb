@@ -42,8 +42,64 @@
 	  <%= f.text_area :body %>
 	</div>
 	<% hidden_field :lock, :lock_version %>
+
+	<table >
+	    <% @slink.each_with_index do |slink, i| %>
+	    <% @slink = slink %>
+	  <tr>
+	    <td>title<%= i+1 %></td>
+	    <td><%= text_field "slink", "title", :id =>"slink_title_#{i}", :index => i%></td>
+	  </tr>
+	  <tr>
+	    <td>
+	      <!--	<label for="slink_title_<%= i %>">title</label> -->
+	      URL<%= i+1 %>
+	    </td>
+	    <!--	<label for="slink_url_<%= i %>">url</label> -->
+	    <td>
+	      <%= text_field "slink", "link", :id =>"slink_url_#{i}", :index => i  ,:rows => 10%>
+	    </td>
+	<% end %>
+	<%# end %>
+	<%# end %>
+</table>
+
+
+
+
+
+	<br />
+	<% if @hyperlinks.empty? %>
+	<p> 現在このレポートには参考 URL はありません </p><br />
+	<% else %>
+	<br />
+	<table width="700px" border="0" cellspacing="1" bgcolor="#c71585">
+	  <tr bgcolor="#c71585" align="left">
+	      <th><b><font color="#ffffff"> リンク名 </font></b></th>
+	      <th><b><font color="#ffffff"> URL </font></b></th>
+	      <th><b><font color="#ffffff"> 削除 </font></b></th>
+
+	  </tr>
+
+	  <% @hyperlinks.each do |hlink| %>
+	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+	    <td><%= hlink.title %></td>
+	    <td><%= link_to(hlink.link, hlink.link) %></td>
+	    <td><%= link_to('削除する', :controller => 'hyperlinks', :action => 'destroy', :id => hlink.id) %>
+	  </tr>
+	  <% end %>
+	  <% end %>
+
+	</table>
+	<br />
+
+
 	<div class="actions">
 	  <%= f.submit %>
+
+
+
+
 	</div>
 	
 	<% end %>

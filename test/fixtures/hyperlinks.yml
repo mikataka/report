@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  repbody_id: 1
+  link: MyString
+
+two:
+  repbody_id: 1
+  link: MyString

@@ -42,6 +42,23 @@
 	    </td>
 	  </tr>
 	</table>
+
+
+	<table width="700px" border="0" cellspacing="1" bgcolor="#c71585">
+	  <tr bgcolor="#c71585" align="left">
+	      <th><b><font color="#ffffff"> リンク名 </font></b></th>
+	      <th><b><font color="#ffffff"> URL </font></b></th>
+	  </tr>
+
+	  <% @hyperlinks.each do |hlink| %>
+	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+	    <td><%= hlink.title %>
+	    <td><%= link_to(hlink.link, hlink.link) %></td>
+	  </tr>
+	  <% end %>
+
+	</table>
+
 	<% unless @roleh[current_user.role_id.to_i] == '受講生' %>
 	<%= link_to 'コメントする', new_user_repbody_comment_path(current_user, @repbodyidshow.id) %></td>
         <% end %>
