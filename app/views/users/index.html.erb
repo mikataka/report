@@ -15,7 +15,8 @@
 	</p>
 	<%= @papa%>
 	<br>
-	<% unless @role["#{current_user.role.id}"] == "受講生" %>
+	<%# unless @role["#{current_user.role.id}"] == "受講生" %>
+	<% if @role["#{current_user.role.id}"] == "Staff" or @role["#{current_user.role.id}"] == "TA" %>
 	<table border="1" width="700px">
 	  <tr>
 	    <th>Year</th>
