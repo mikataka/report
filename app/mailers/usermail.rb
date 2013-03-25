@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Usermail < ActionMailer::Base
-  default from: "takuya@ep.sci.hokudai.ac.jp"
+  default from: "suu@ep.sci.hokudai.ac.jp"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
