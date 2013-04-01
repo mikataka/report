@@ -230,10 +230,13 @@ class UsersController < ApplicationController
   def acception
     @user = User.find(params[:id])
     @user.acception = 't'
+    @owner = User.find_by_account(@user.owner)
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_url, notice: '【メッセージ】ユーザを承認しました' }
         format.json { head :no_content }
+        mail = Usermail.accepteduser(@owner.username, @user.username, @owner.email, @user.email)
+        mail.deliver
       else
         format.html { render action: "index" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
