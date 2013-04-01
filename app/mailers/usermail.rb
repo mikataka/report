@@ -20,4 +20,17 @@ class Usermail < ActionMailer::Base
          :return_path => "#{@ownermail}"
           )
   end
+  def accepteduser(ownername, username, ownermail, usermail)
+    @ownername = ownername
+    @username = username
+    @ownermail = ownermail
+    @usermail = usermail
+
+    @greeting = "Hi"
+    mail(
+         :to => "#{@usermail}, #{@ownermail}",
+         :subject => '通知メール',
+         :return_path => "#{@ownermail}"
+          )
+  end
 end
