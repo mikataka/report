@@ -15,7 +15,6 @@
 	</p>
 	<%= @papa%>
 	<br>
-	<%# unless @role["#{current_user.role.id}"] == "受講生" %>
 	<% if @role["#{current_user.role.id}"] == "Staff" or @role["#{current_user.role.id}"] == "TA" %>
 	<table border="1" width="700px">
 	  <tr>
@@ -26,10 +25,11 @@
 	    <th>Email</th>
 	    <th>Role</th>
 	    <th>Grade</th>
+	    <th>情報実験機番号</th>
 	    <th>レポートを見る</th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
+	    <th>ユーザ情報</th>
+	    <th>ユーザ情報変更</th>
+<!--	    <th></th>-->
 	  </tr>
 	  
 	  <% @users.each do |user| %>
@@ -42,18 +42,19 @@
 	    <td><%= user.email %></td>
 	    <td><%= @role["#{user.role_id}"] %></td>
 	    <td><%= user.grade %></td>
-	    <!--    <td><%= user.password_digest %></td> -->
+	    <td><%= user.machine %></td>
 	    <td><%= link_to 'Report', userreportshow_path(user.id) %></td>
 	    <td><%= link_to 'Show', user %></td>
 	    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-	    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+<!--	    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>-->
 	  </tr>
 	  <% end %>
 	  <% end %>
 	</table>
+	<% end %>
 	
 	<br />
-	<% else %>
+	<% if @role["#{current_user.role.id}"] == "VTA" %>
 	<table border="1" width="700px">
 	  <tr>
 	    <th>Account</th>
@@ -61,6 +62,38 @@
 	    <th>Studentid</th>
 	    <th>Role</th>
 	    <th>Grade</th>
+	    <th>情報実験機番号</th>
+	    <th>レポートを見る</th>
+	    <th>ユーザ情報</th>
+	  </tr>
+	  
+	  <% @users.each do |user| %>
+	  <% if user.acception %>
+	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
+	    <td><%= user.account %></td>
+	    <td><%= user.username %></td>
+	    <td><%= user.studentid %></td>
+	    <td><%= @role["#{user.role_id}"] %></td>
+	    <td><%= user.grade %></td>
+	    <td><%= user.machine %></td>
+	    <td><%= link_to 'Report', userreportshow_path(user.id) %></td>
+	    <td><%= link_to 'Show', user %></td>
+	  </tr>
+	  <% end %>
+	  <% end %>
+	</table>
+	<br />
+	<% end %>
+
+	<% if @role["#{current_user.role.id}"] == "受講生" %>
+	<table border="1" width="700px">
+	  <tr>
+	    <th>Account</th>
+	    <th>Username</th>
+	    <th>Studentid</th>
+	    <th>Role</th>
+	    <th>Grade</th>
+	    <th>情報実験機番号</th>
 	    <th>レポートを見る</th>
 	  </tr>
 	  
@@ -72,15 +105,14 @@
 	    <td><%= user.studentid %></td>
 	    <td><%= @role["#{user.role_id}"] %></td>
 	    <td><%= user.grade %></td>
-	    <!--    <td><%= user.password_digest %></td> -->
-	    <td><%= link_to 'Show', userreportshow_path(user.id) %></td>
+	    <td><%= user.machine %></td>
+	    <td><%= link_to 'Report', userreportshow_path(user.id) %></td>
 	  </tr>
 	  <% end %>
 	  <% end %>
 	</table>
 	<br />
 	<% end %>
-
 
 	<% unless @role["#{current_user.role.id}"] == "受講生" %>
 	<% if @user_waiting.length != 0 %>
