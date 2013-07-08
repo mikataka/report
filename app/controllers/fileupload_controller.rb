@@ -20,7 +20,7 @@ class FileuploadController < ApplicationController
       name = name.kconv( Kconv::SJIS, Kconv::UTF8 )
       picdir = "public/picture/#{current_user.id.to_s}"
       unless File.exists?("#{picdir}")
-        Dir::mkdir("/home/takuya/rails/report/#{picdir}")
+        Dir::mkdir("/home/suu/report/#{picdir}")
       end
       File.open("#{picdir}/#{name}", 'wb') {|f| f.write(file.read)}
       result = "#{name.toutf8} をアップロードしました"
