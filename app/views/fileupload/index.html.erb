@@ -8,7 +8,7 @@
     <th>サムネイル</th>
     <th>ファイル名</th>
     <th>説明</th>
-    <th>うp日</th>
+    <th>アップロード日</th>
   </tr>
 
 
@@ -16,7 +16,20 @@
 
   <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
     <% filename = myfile.filename %>
-    <td><%= image_tag "/picture/#{current_user.id}/#{filename}", :size => '120x90'  %></td>
+<!--    <td><%= image_tag "/picture/#{current_user.id}/#{filename}", :size => '120x90'  %></td>
+-->
+    <td>
+    <% if ['.jpg', '.gif', '.png'].include?(File.extname(filename).downcase) %>
+      <%= link_to image_tag("/picture/#{current_user.id}/#{filename}", :size => '120x90'), "/picture/#{current_user.id}/#{filename}" %>
+    <% end %>
+    <% if ['.html', '.htm', '.css'].include?(File.extname(filename).downcase) %>
+      <%= link_to("#{filename}", "/html/#{current_user.id}/#{filename}") %>
+    <% end %>
+    <% if ['.sh'].include?(File.extname(filename).downcase) %>
+      <%= link_to("#{filename}", "/sh/#{current_user.id}/#{filename}") %>
+    <% end %>
+
+</td>
     <td><%= myfile.filename %></td>
     <td><%= myfile.caption %></td>
     <td><%= truncate(myfile.created_at.to_s, :length => 19, :omission => "") %></td>
