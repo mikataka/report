@@ -9,6 +9,7 @@
     <th>ファイル名</th>
     <th>説明</th>
     <th>アップロード日</th>
+    <th>ファイル削除</th>
   </tr>
 
 
@@ -20,19 +21,23 @@
 -->
     <td>
     <% if ['.jpg', '.gif', '.png'].include?(File.extname(filename).downcase) %>
-      <%= link_to image_tag("/picture/#{current_user.id}/#{filename}", :size => '120x90'), "/picture/#{current_user.id}/#{filename}" %>
+      <%= link_to image_tag("/picture/#{current_user.id}/#{filename}", :size => '120x90'), "/report/picture/#{current_user.id}/#{filename}" %>
     <% end %>
     <% if ['.html', '.htm', '.css'].include?(File.extname(filename).downcase) %>
-      <%= link_to("#{filename}", "/html/#{current_user.id}/#{filename}") %>
+      <%= link_to("#{filename}", "/report/html/#{current_user.id}/#{filename}") %>
     <% end %>
     <% if ['.sh'].include?(File.extname(filename).downcase) %>
-      <%= link_to("#{filename}", "/sh/#{current_user.id}/#{filename}") %>
+      <%= link_to("#{filename}", "/report/sh/#{current_user.id}/#{filename}") %>
+    <% end %>
+    <% if ['.zip'].include?(File.extname(filename).downcase) %>
+      <%= link_to("#{filename}", "/report/zip/#{current_user.id}/#{filename}") %>
     <% end %>
 
 </td>
     <td><%= myfile.filename %></td>
     <td><%= myfile.caption %></td>
     <td><%= truncate(myfile.created_at.to_s, :length => 19, :omission => "") %></td>
+    <td><%= link_to('Destroy', :controller => 'fileupload', :action => 'destroy', :id => myfile.id, :confirm => 'Are you sure?') %></td>
   </tr>
 <% end %>
 </table>
