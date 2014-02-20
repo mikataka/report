@@ -93,7 +93,7 @@ class RolesController < ApplicationController
       @role["#{role.id}"] = role.position 
     end
     if @role["#{current_user.role_id}"] == '受講生' 
-      redirect_to mypage_path(current_user.id) , :notice => "#{request.path}にはアクセスできません. 悪い人です." 
+      redirect_to mypage_path(current_user.id) , :notice => "受講生がRole を編集することはできません" 
     end 
   end 
 

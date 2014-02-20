@@ -47,7 +47,7 @@ before_filter :edit_check
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
+        format.html { redirect_to @tag, notice: 'タグが正しく作成されました' }
         format.json { render json: @tag, status: :created, location: @tag }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ before_filter :edit_check
 
     respond_to do |format|
       if @tag.update_attributes(params[:tag])
-        format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
+        format.html { redirect_to @tag, notice: 'タグが正しくアップデートされました' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -92,6 +92,6 @@ end
       @role["#{role.id}"] = role.position 
     end
     if @role["#{current_user.role_id}"] == '受講生' 
-      redirect_to mypage_path(current_user.id) , :notice => "この先は通さん！" 
+      redirect_to mypage_path(current_user.id) , :notice => "受講生がタブの作成・編集することはできません" 
     end 
   end 

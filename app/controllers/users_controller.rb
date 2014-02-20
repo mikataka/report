@@ -252,7 +252,7 @@ class UsersController < ApplicationController
       @role["#{role.id}"] = role.position 
     end
     if @role["#{current_user.role_id}"] == '受講生' 
-      redirect_to mypage_path(current_user.id) , :notice => "【警告】#{request.path}にはアクセスできません. だめです." 
+      redirect_to mypage_path(current_user.id) , :notice => "【警告】受講生が他のユーザー情報の編集等をすることはできません" 
     end 
   end 
   def mypage_check
@@ -262,7 +262,7 @@ class UsersController < ApplicationController
       @role["#{role.id}"] = role.position 
     end
     if current_user.id.to_i != params[:id].to_i && @role["#{current_user.role_id}"] == '受講生' 
-      redirect_to mypage_path(current_user.id) , :notice => "【警告】#{request.path}にはアクセスできません. 悪いこと考えますね." 
+      redirect_to mypage_path(current_user.id) , :notice => "【警告】受講生が他のユーザー情報の編集等をすることはできません" 
     end 
   end 
 

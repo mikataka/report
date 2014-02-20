@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 class RepbodiesController < ApplicationController
-  before_filter :user_checked, :except => ['index', 'show', 'edit', 'opinion']
+  before_filter :user_checked, :except => ['index', 'show']
   before_filter :edit_checked, :only => ['edit']
+  before_filter :year_checked, :except => ['index','show']
 
   # GET /repbodies
   # GET /repbodies.json
@@ -261,15 +262,20 @@ end
   private 
   def user_checked 
     unless params[:user_id].to_i == current_user.id 
-      repbody = Repbody.find(current_user.id) 
-      redirect_to user_repbody_path(current_user, repbody.id) , :notice => "【警告】#{request.path}にはアクセスできません" 
+      redirect_to mypage_path(current_user.id) , :notice => "【警告】他のユーザーのレポートに編集等を加えることはできません" 
     end 
   end 
   def edit_checked 
     @repbody = Repbody.find(params[:id])
-    unless @repbody.user_id.to_i == current_user.id 
-      repbody = Repbody.find(current_user.id) 
-      redirect_to user_repbody_path(current_user, repbody.id) , :notice => "【警告】#{request.path}にはアクセスできません" 
+    unless @repbody.user_id.to_i == current_user.id
+      redirect_to mypage_path(current_user.id) , :notice => "【警告】他のユーザーのレポートに編集等を加えることはできません"
+    end 
+  end 
+  def year_checked
+    @thisyear = Year.find(:first, :conditions => {:default => 't'})
+    @role = Role.find(:first, :conditions => ["position = ?", '受講生'])
+    if @thisyear.year != current_user.year && current_user.role_id.to_i == @role.id.to_i
+      redirect_to mypage_path(current_user.id) , :notice => "【警告】 今年度以外の受講生の新規作成・編集は許可されていません" 
     end 
   end 
 

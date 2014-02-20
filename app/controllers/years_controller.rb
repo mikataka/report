@@ -43,6 +43,6 @@ end
       @role["#{role.id}"] = role.position 
     end
     if @role["#{current_user.role_id}"] == '受講生' 
-      redirect_to mypage_path(current_user.id) , :notice => "この先は通さん！" 
+      redirect_to mypage_path(current_user.id) , :notice => "受講生が年度更新することはできません" 
     end 
   end 
