@@ -15,12 +15,12 @@ class FileuploadController < ApplicationController
       redirect_to fileupload_path, :notice => "#{result}"
     elsif
       name = file.original_filename
-      perms = ['.jpg', '.gif', '.png', '.html', '.htm', '.css', '.sh', '.zip']
+      perms = ['.jpg', '.gif', '.png', '.html', '.htm', '.css', '.sh', '.zip', '.gz']
       if !perms.include?(File.extname(name).downcase)
-        result = 'アップロードできるのは画像ファイル, HTMLファイル, css ファイル, shファイル, zip ファイルのみです'
+        result = 'アップロードできるのは画像ファイル, HTMLファイル, css ファイル, shファイル, zip ファイル, tar.gz ファイルのみです'
         redirect_to fileupload_path, :notice => "#{result}"
-      elsif file.size > 1.megabyte
-        result = 'ファイルサイズは 1MB までです'
+      elsif file.size > 10.megabyte
+        result = 'ファイルサイズは 10MB までです'
         redirect_to fileupload_path, :notice => "#{result}"
       else
         if ['.jpg', '.gif', '.png'].include?(File.extname(name).downcase)
@@ -54,6 +54,14 @@ class FileuploadController < ApplicationController
             Dir::mkdir("/home/suu/report/#{zipdir}")
           end
           File.open("#{zipdir}/#{name}", 'wb') {|f| f.write(file.read)}
+        end
+        if ['.gz'].include?(File.extname(name).downcase)
+          name = name.kconv( Kconv::SJIS, Kconv::UTF8 )
+          targzdir = "public/targz/#{current_user.id.to_s}"
+          unless File.exists?("#{targzdir}")
+            Dir::mkdir("/home/suu/report/#{targzdir}")
+          end
+          File.open("#{targzdir}/#{name}", 'wb') {|f| f.write(file.read)}
         end
         result = "#{name.toutf8} をアップロードしました"
         @myfile = Myfile.new
