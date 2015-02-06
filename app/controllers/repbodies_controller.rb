@@ -41,8 +41,10 @@ class RepbodiesController < ApplicationController
     end
     @users = User.all
     @usernameh = Hash::new
+    @usermachineh = Hash::new
     @users.each do |user|
       @usernameh["#{user.id}"] = user.username 
+      @usermachineh["#{user.id}"] = user.machine 
     end
 
     @comment = Comment.all
@@ -116,7 +118,11 @@ class RepbodiesController < ApplicationController
       @slink << @hyperlink_#{i}
     end
 
-    @tag = Tag.all
+#    @tag = Tag.all
+    @thisyear = Year.find(:first, :conditions => {:default => 't'})
+    @yearname = @thisyear.year.to_s
+#    @tag = Tag.find(:all, :conditions => [ "tag like ? ", '%2014%' ] )
+    @tag = Tag.find(:all, :conditions => [ "tag like ? ", "%[#{@yearname}]%" ] )
 
     if current_user.id
       @repbody.user_id = current_user.id
@@ -131,6 +137,7 @@ class RepbodiesController < ApplicationController
   # GET /repbodies/1/edit
   def edit
     @repbody = Repbody.find(params[:id])
+#    @tag = Tag.find(:all, :conditions => [ "tag like ? ", '%2014%' ] )
     @tag = Tag.all
       @slink = Array.new
     for i in 1..5 do
