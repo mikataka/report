@@ -32,6 +32,9 @@
     <% if ['.zip'].include?(File.extname(filename).downcase) %>
       <%= link_to("#{filename}", "/report/zip/#{current_user.id}/#{filename}") %>
     <% end %>
+    <% if ['.gz'].include?(File.extname(filename).downcase) %>
+      <%= link_to("#{filename}", "/report/targz/#{current_user.id}/#{filename}") %>
+    <% end %>
 
 </td>
     <td><%= myfile.filename %></td>

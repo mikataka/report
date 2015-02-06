@@ -9,6 +9,7 @@
 	  <%= link_to 'レポート一覧', repbodies_path %> <br />
 	  <%= link_to 'ユーザ一覧', users_path %> <br />
 	  <%= link_to 'アカウント情報', user_path(current_user) %> <br />
+	  <%= link_to 'アカウント情報編集', edit_user_path(current_user) %> <br />
 	  <%= link_to 'パスワード変更', chpass_path(current_user.id) %> <br />
 	  <%= link_to 'ログアウト', logout_path %> <br />
 	</p>

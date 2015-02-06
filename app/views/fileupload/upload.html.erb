@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1>ファイルアップローダ</h1>
 <p>
-  現在画像ファイル (.jpg, .gif, .png), HTMLファイル (.html, .htm), cssファイル (.css), shファイル (.sh), zipファイル(.zip) アップロード可能. 1 ファイルのサイズは 1MB までです.
+  現在画像ファイル (.jpg, .gif, .png), HTMLファイル (.html, .htm), cssファイル (.css), shファイル (.sh), zipファイル(.zip), tar.gz ファイルのアップロードが可能. 1 ファイルのサイズは 10MB までです.
 </p>
 <%= form_tag({ :action => 'upload_process' }, :multipart => true ) do %>
 <label> ファイルを指定: 

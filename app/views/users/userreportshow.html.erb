@@ -14,6 +14,7 @@
 	    <th></th>
 	    <th>ID</th>
 	    <th>User</th>
+	    <th>ふりがな</th>
 	    <th>Tag</th>
 	    <th>Date</th>
 	    <th>Title</th>
@@ -28,6 +29,7 @@
 	    <td><%= nm %></td>
 	    <td><%= repbody.id %></td>
 	    <td><%= repbody.user.username %></td>
+	    <td><%= repbody.user.furigana %></td>
 	    <td><%= repbody.tag.tag %><%#= @tag_name[repbody.tag_id.to_i - 1].to_s %></td>
 	    <td><%= repbody.date %></td>
 	    <td><%= repbody.title %></td>

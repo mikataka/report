@@ -21,6 +21,7 @@
 	    <th>Year</th>
 	    <th>Account</th>
 	    <th>Username</th>
+	    <th>ふりがな</th>
 	    <th>Studentid</th>
 	    <th>Email</th>
 	    <th>Role</th>
@@ -38,6 +39,7 @@
 	    <td><%= user.year %></td>
 	    <td><%= user.account %></td>
 	    <td><%= user.username %></td>
+	    <td><%= user.furigana %></td>
 	    <td><%= user.studentid %></td>
 	    <td><%= user.email %></td>
 	    <td><%= @role["#{user.role_id}"] %></td>
@@ -59,6 +61,7 @@
 	  <tr>
 	    <th>Account</th>
 	    <th>Username</th>
+	    <th>ふりがな</th>
 	    <th>Studentid</th>
 	    <th>Role</th>
 	    <th>Grade</th>
@@ -72,6 +75,7 @@
 	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
 	    <td><%= user.account %></td>
 	    <td><%= user.username %></td>
+	    <td><%= user.furigana %></td>
 	    <td><%= user.studentid %></td>
 	    <td><%= @role["#{user.role_id}"] %></td>
 	    <td><%= user.grade %></td>
@@ -90,6 +94,7 @@
 	  <tr>
 	    <th>Account</th>
 	    <th>Username</th>
+	    <th>ふりがな</th>
 	    <th>Studentid</th>
 	    <th>Role</th>
 	    <th>Grade</th>
@@ -102,6 +107,7 @@
 	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
 	    <td><%= user.account %></td>
 	    <td><%= user.username %></td>
+	    <td><%= user.furigana %></td>
 	    <td><%= user.studentid %></td>
 	    <td><%= @role["#{user.role_id}"] %></td>
 	    <td><%= user.grade %></td>
@@ -121,6 +127,7 @@
 	  <tr>
 	    <th>Account</th>
 	    <th>Username</th>
+	    <th>ふりがな</th>
 	    <th>Studentid</th>
 	    <th>Role</th>
 	    <th>Grade</th>
@@ -132,6 +139,7 @@
 	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
 	    <td><%= user.account %></td>
 	    <td><%= user.username %></td>
+	    <td><%= user.furigana %></td>
 	    <td><%= user.studentid %></td>
 	    <td><%= @role["#{user.role_id}"] %></td>
 	    <td><%= user.grade %></td>

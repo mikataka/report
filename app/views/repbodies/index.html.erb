@@ -9,8 +9,8 @@
     <div id="mainbox">
       <div id="mainfield">
 	<!-- メインコンテンツ  -->
-	<%= @yearserch %>
-        <%= @tagserch %>
+	<%#= @yearserch %>
+        <%#= @tagserch %>
 	<p>
 	  タグで絞り込む？
 	  <%= form_tag(:action => "index") do %>
@@ -24,6 +24,7 @@
 	  <tr>
 	    <th>Year</th>
 	    <th>User</th>
+	    <th>情報実験機番号</th>
 	    <th>Tag</th>
 	    <th>create date</th>
 	    <th>last update</th>
@@ -38,6 +39,7 @@
 	  <tr style="background-color:<%= cycle('#ffffff', '#d3d3d3') %>">
 	    <td><%= repbody.year %></td>
 	    <td><%= p @usernameh["#{repbody.user_id}"] %></td>
+	    <td><%= p @usermachineh["#{repbody.user_id}"] %></td>
 	    <td><%= @tag_name[repbody.tag_id.to_i - 1].to_s %></td>
 	    <td><%= truncate(repbody.created_at.to_s, :length => 19, :omission => '') %></td>
 	    <td><%= truncate(repbody.updated_at.to_s, :length => 19, :omission => '') %></td>

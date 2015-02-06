@@ -21,14 +21,15 @@
 	    <th>Year</th>
 	    <th>Account</th>
 	    <th>Username</th>
+	    <th>ふりがな</th>
 	    <th>Studentid</th>
 	    <th>Email</th>
 	    <th>Role</th>
 	    <th>Grade</th>
+	    <th>情報実験機番号</th>
 	    <th>レポートを見る</th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
+	    <th>ユーザ情報</th>
+	    <th>ユーザ情報変更</th>
 	  </tr>
 	  
 	  <% @users.each do |user| %>
@@ -37,15 +38,15 @@
 	    <td><%= user.year %></td>
 	    <td><%= user.account %></td>
 	    <td><%= user.username %></td>
+	    <td><%= user.furigana %></td>
 	    <td><%= user.studentid %></td>
 	    <td><%= user.email %></td>
 	    <td><%= @role["#{user.role_id}"] %></td>
 	    <td><%= user.grade %></td>
-	    <!--    <td><%= user.password_digest %></td> -->
+	    <td><%= user.machine %></td>
 	    <td><%= link_to 'Report', userreportshow_path(user.id) %></td>
 	    <td><%= link_to 'Show', user %></td>
 	    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-	    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
 	  </tr>
 	  <% end %>
 	  <% end %>

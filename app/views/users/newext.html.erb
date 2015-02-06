@@ -18,6 +18,10 @@
   <%= f.label :フルネーム %> (全角で 苗字 + 名前. 苗字と名前の間には半角スペースをいれる. ex. 坂本 太郎) <br />  
   <%= f.text_field :username %>  
 </div>  
+<div class="field"> 
+  <%= f.label :ふりがな %> (全角で 苗字 + 名前. 苗字と名前の間には半角スペースをいれる. ex. さかもと たろう) <br />  
+  <%= f.text_field :furigana %>  
+</div>  
 <div class="field">  
   <%= f.label :学籍番号 %> (半角数字. ex. 29999999) <br />
   <%= f.text_field :studentid %>  
