@@ -1,0 +1,145 @@
+body{
+background-image:url(star3.jpg);
+background-repeat:repeat;
+font:"ÉÅÉCÉäÉI"
+color:"yellow";
+margin:0px;
+padding:0px;
+height:1000px;
+}
+
+#contents{ 
+width:1000px;
+margin:0 auto;
+background-repeat:repeat-y; 
+position:relative;
+font-size:80%;
+}
+
+
+#header{
+background-image:url(sun-spacec-1.jpg);
+background-position:top left;
+background-repeat:no-repeat;
+height:145px;
+}
+
+#navbar{
+width:100%;
+height:45px;
+position:absolute;
+top:150px;
+}
+
+#navbar ul{
+margin:0;
+padding:5;
+list-style-type:none;
+font-family:Arial,Helvetica,sans-serif,
+font-size:12px;
+line-height:45px;
+letter-spacing:2px;
+}
+
+#navbar li{
+background-image:url(button-6839.png);
+float:left;
+width:142px;
+text-align:center;
+padding:0px;
+}
+
+#navbar ul a:hover{
+background-image:url(button-6096.png);
+width:142px;
+}
+
+#navbar a{
+color:#ffff00;
+display:block;
+}
+
+#navbar a:hover{
+color:"ffffff";
+}
+
+
+
+
+#side{
+width:205px;
+position:absolute;
+top:200px;
+left:900px;
+}
+
+#side ul{
+font-size:150%;
+line-height:220%;
+margin:0px;
+padding-left:15px;
+}
+
+#side ul a:hover{
+color:#ff0000;
+}
+
+#side ul{
+list-style-type:none;
+padding-left:2px;
+}
+
+#side li{
+padding-left:2px;
+}
+
+#side li a{
+color:#87cefa;
+border-bottom:solid 2px #00bfff;
+width:190px;
+display:block;
+}
+
+#side ad_list li{
+background-image:none;
+padding-left:0;
+}
+
+h1{
+font-size:70%;
+letter-spacing:2px;
+padding-left:10px;
+margin:0px;
+}
+
+h1 a{
+color:#ffffff;
+font-weight:normal;
+}
+
+
+
+
+
+
+
+
+
+
+#main{
+background-image:url(p2.jpg);
+width:800px;
+margin-top:100px;
+margin-left:15px;
+
+}
+
+
+
+
+
+
+
+
+
+

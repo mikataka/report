@@ -1,0 +1,86 @@
+/*                                                 */
+/* INEX 各授業案ファイルで取り込むスタイルファイル */
+/*                                                 */
+/*  2002/10/07    やまだ まなぶ 作成               */
+/*                                                 */
+
+/* 裏方  に関係する内容 */
+.URA{
+ /* 学生版の場合, display: none; を記述すること */
+ /* 裏方版の場合, なにもかかない */
+ /*display: none;*/
+}
+
+
+
+/* スケジュールテーブル関係 */
+
+TABLE.SCHEDULE{
+  border-collapse: collapse;
+  WIDTH: 90%;
+  margin-left: 5%;
+}
+
+
+/* 時間 */
+TH.TIME{
+  border-style: solid;
+  border-width: 1px;
+  WIDTH: 8%;
+  COLOR: #000000;
+  BACKGROUND: #FF9999;
+}
+
+TD.TIME{
+  vertical-align: top;
+  border-style: solid;
+  border-width: 1px;
+  COLOR: #000000;
+  BACKGROUND: #FFCCCC;
+  text-align: center;
+}
+
+/* 全体スケジュール */
+TH.SCDL{
+  border-style: solid;
+  border-width: 1px;
+  WIDTH: 45%;
+  COLOR: #000000;
+  BACKGROUND: #9999FF;
+}
+
+TD.SCDL{
+  vertical-align: top;
+  border-style: solid;
+  border-width: 1px;
+  COLOR: #000000;
+  BACKGROUND: #CCCCFF;
+}
+
+/* 裏方スケジュール */
+TH.URA{
+  /* display: none; */
+  vertical-align: top;
+  border-style: solid;
+  border-width: 1px;
+  WIDTH: 45%;
+  COLOR: #000000;
+  BACKGROUND: #99FF99;
+}
+
+TD.URA{
+  border-style: solid;
+  border-width: 1px;
+  COLOR: #000000;
+  BACKGROUND: #CCFFCC;
+}
+
+TD.EXAMPLE{
+  border-style: solid;
+  border-width: 1px;
+  COLOR: #000000;
+  BACKGROUND: #CCCCFF;
+  font-size: 50%;
+}
+
+

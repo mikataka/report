@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130311092407) do
+ActiveRecord::Schema.define(:version => 20140417171443) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -79,12 +79,13 @@ ActiveRecord::Schema.define(:version => 20130311092407) do
     t.integer  "role_id"
     t.string   "grade"
     t.string   "password_digest"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.string   "machine"
     t.integer  "year",            :default => 2013
     t.boolean  "acception"
     t.string   "owner"
+    t.string   "furigana",        :default => "family first"
   end
 
   create_table "years", :force => true do |t|

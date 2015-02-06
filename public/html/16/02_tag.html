@@ -1,0 +1,246 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" content="text/html ; charset=EUC-JP">
+	
+	<LINK REL="stylesheet" TYPE="text/css" HREF="./jitsugi.css">
+	<!--<LINK REL="stylesheet" TYPE="text/css" HREF="../../css/jitsugi.css">-->
+	<TITLE>最低限HTML</TITLE>
+</HEAD>
+<BODY>
+
+<H1><A HREF="index.html" CLASS="H1" NAME="top">
+	最低限HTML
+</A></H1>
+
+<DIV CLASS="MAIN">
+<TABLE WIDTH="80%">
+<TR><TH><FONT SIZE="+2">2. 最低限HTML</FONT></TH></TR>
+<TR><TD>
+<P>必修</P>
+  <OL CLASS="CONTENTS">
+    <LI><A HREF="01_prepare">事前準備 </A>
+    <LI><A HREF="02_html">最低限 HTML </A>
+     <UL>
+      <LI><A HREF="#file">HTMLの構造 </A>
+      <LI><A HREF="#index"> 代表的なタグ</A>
+      <LI><A HREF="#htaccess">リッチなコンテンツ </A>
+     </UL>
+    <LI>Webページの公開
+
+  </OL>
+</TR></TD>
+<TR><TD>
+<P>付録</P>
+  <OL CLASS="CONTENTS" start="4">
+    <LI>
+    <LI>
+    <LI>
+  </OL>
+
+</TD></TR>
+
+</TABLE>
+</DIV>
+
+<HR SIZE="1" NOSHADE><DIV CLASS="MAIN">
+
+<H2><A NAME="file">[2.1] HTMLの構造</A></H2>
+
+<P>
+ブラウザで閲覧できる最低限のHTMLファイルの書き方を解説します。
+HTMLとはWebページを記述するための言語です。
+HTMLでは<em>タグ</em>と呼ばれる &lt& と &gt; で囲まれた文字列によって、文章の論理構造や表示の仕方を記述できます。
+</P>
+
+<P>
+
+&lt;html&gt;要素の内容&lt;/html&gt; のように、タグのペアで囲むことで要素が作られます。<em>要素の組み合わせでページが作られます。</em>
+HTML文書はhead要素とbody要素で構成されます。また、この2つを合わせたHTMLの本体がhtml要素になっています。このように、要素は親子構造を作ります。
+この場合、html要素が親要素でその内部にhead要素とbody要素の子要素が含まれる構造になっています。
+<P>
+では簡単なHTMLファイルを作って、ブラウザで表示してみましょう。
+まず、エディタで hallo.html というファイルを作って編集します。
+</P>
+
+<TABLE CLASS="COMMAND">
+<TR><TD CLASS="COMMAND"><PRE>
+$ <KBD>vi hallo.html</KBD>
+以下のように入力します．
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;
+タイトル
+&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+こんにちは
+&lt;/body&gt;
+&lt;/html&gt;
+</PRE></TD></TR></TABLE>
+
+<P>
+作成したHTMLファイルをブラウザで表示します。
+</P>
+
+<TABLE CLASS="COMMAND">
+<TR><TD CLASS="COMMAND"><PRE>
+$ <KBD>iceweasel hallo.html</KBD>
+</PRE></TD></TR></TABLE>
+
+<P>
+これにより以下の様な画面が表示されるはずです。
+</P>
+
+<P>
+hallo.htmlでは、html要素の中にhead要素とbody要素が入っていて、さらにhead要素の中にtitle要素が入った親子構造になっています。
+
+</P>
+
+
+
+<H2><A NAME="file">[2.2] 基本的なタグ</A></H2>
+
+
+<H3>[2.2.1] &lt;html&gt; 〜 &lt;/html&gt;</H3>
+<P>
+&lt;html&gt; 〜 &lt;/html&gt;で文章を囲むことで、この文章がHTML文書であることを表します。
+</P>
+<H3>[2.2.2] &lt;head&gt; 〜 &lt;/head&gt;</H3>
+<P>
+ヘッダ情報(文章自身に関する情報)が入ります。（もじじょうほうとか）
+</P>
+<H3>[2.2.3] &lt;body&gt; 〜 &lt;/body&gt;</H3>
+<P>
+本文が入ります。この内容がブラウザに表示されます
+</P>
+<H3>[2.2.4] &lt;title&gt; 〜 &lt;/title&gt;</H3>
+<P>
+文書のタイトルが入ります。内容がわかるようなタイトルを付けるべきです。
+</P>
+<H3>[2.2.5] &lt;h1&gt; 〜 &lt;/h1&gt;、&lt;h2&gt; 〜 &lt;/h2&gt;、&lt;h3&gt; 〜 &lt;/h3&gt;</H3>
+<P>
+見出しをつけます。数字が小さいほど重要な見出しです。
+</P>
+<H3>[2.2.6] &lt;p&gt; 〜 &lt;/p&gt;</H3>
+<P>
+段落をわけます。
+</P>
+<H3>[2.2.1] &lt;strong&gt; 〜 &lt;/strong&gt;</H3>
+<P>
+<strong>強い強調</strong>を表します。
+
+
+</P>
+<H3>[2.2.1] &lt;a href="ウェブアドレス"&gt; 〜 &lt;/a&gt;</H3>
+<P>
+<a href="http://www.ep.sci.hokudai.ac.jp/~inex/">リンク</a>を張ります
+</P>
+<H3>[2.2.1] &lt;img src="画像ファイル" alt="〜" &gt;</H3>
+<P>
+<img src="./image.png" alt="sample_image" >
+<br>
+画像を貼る。altには画像を表示できない場合に代わりに表示するテキストを指定する。
+</P>
+<H3>[2.2.1] &lt;br&gt;</H3>
+<P>
+<br>
+改行します
+<br>
+これは単一のタグで利用でき、内容がない空要素です
+
+</P>
+<H3>[2.2.1] &lt;!-- 〜 --&gt;</H3>
+<P>
+<!-- コメントを入れます -->
+コメントを入れます。わかりやすいHTMLにするためには適切にコメントを入れることが必須です。
+</P>
+ul
+meta
+
+最低限じゃないの(発展編　ページ末に)
+em
+hr
+table
+ブロッククォート
+preタグ
+div
+font
+
+<H2><A NAME="rich">[2.3] リッチなコンテンツ</A></H2>
+
+<P>
+これらのタグを駆使して、リッチなコンテンツを作ってみましょう。エディタで rich.html というファイルを作成します。使うタグの内容については、[2.2]の内容を参考にしてください。
+</P>
+
+wgetで落としてくる
+
+<TABLE CLASS="COMMAND">
+<TR><TD CLASS="COMMAND"><PRE>
+$ <KBD>vi hallo.html</KBD>
+以下のように入力します．
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;
+タイトル
+&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;
+&lt;h1&gt;世界の挨拶&lt;/h1&gt;
+&lt;h2&gt;アジア&lt;/h2&gt;
+&lt;h3&gt;日本&lt;/h3&gt;
+こんにちは
+&lt;h3&gt;中国&lt;/h3&gt;
+ニーハオ
+&lt;h2&gt;ヨーロッパ&lt;/h2&gt;
+&lt;h3&gt;フランス&lt;/h3&gt;
+ボンジュール
+&lt;/p&gt;
+&lt;p&gt;
+&lt;img src=".jpg" alt="地球の写真"/&gt;
+&lt;br&gt;
+&lt;a href="〜.html"&gt; 〜 &lt;/a&gt;
+&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</PRE></TD></TR></TABLE>
+
+<P>
+ブラウザで表示します
+</P>
+<TABLE CLASS="COMMAND">
+<TR><TD CLASS="COMMAND"><PRE>
+$ <KBD>iceweasel rich.html</KBD>
+</PRE></TD></TR></TABLE>
+
+<P>
+以下の様な画面が表示されるはずです。
+</P>
+
+特殊文字（ふろく）（べつぺーじに）
+
+<BR><BR><BR>
+
+<A HREF="03_">次ページへ</A>
+
+</DIV><HR SIZE="1" NOSHADE><DIV CLASS="MAIN">
+
+<A HREF="../index.html">情報実験第十一回のページへ戻る</A><BR>
+
+</DIV><HR SIZE="1" NOSHADE>
+<TABLE WIDTH="100%"><TR><TD><SMALL>最終更新日：
+<!-- 更新日情報
+-->
+2013/07/05(仲本 純平)
+</SMALL></TD><TD ALIGN="right"><SMALL> Copyright &copy; 2000-2013 inex
+</SMALL></TD></TR></TABLE>
+</BODY>
+</HTML>

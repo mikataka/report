@@ -1,0 +1,313 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+	<link rel="stylesheet" type="text/css" href="06_css_files/jitsugi.css">
+	<title>6. スタイルシート</title>
+</head>
+<body>
+
+<h1><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/index.html" class="H1" name="top">
+	Web ページの仕組み
+</a></h1>
+
+<div class="MAIN">
+<table width="80%">
+<tbody><tr><th><font size="+2">6. スタイルシート</font></th></tr>
+<tr><td>
+<p>必修</p>
+  <ol class="CONTENTS">
+    <li><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/01_prepare.html">apache </a></li>
+    <li><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/02_tag.html">最低限 HTML</a></li>
+    <li><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/03_public.html">Webページの公開</a></li>
+    <li><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/04_homework.html">本日の課題</a></li>
+  </ol>
+</td></tr>
+<tr><td>
+<p>付録</p>
+  <ol class="CONTENTS" start="5">
+    <li><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/05_character.html">特殊文字</a></li>
+    <li><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/06_css.html">スタイルシート</a></li>
+    <ul>
+     <li><a href="#intro">スタイルシートとは</a></li>
+     <li><a href="#basic">CSS の基本的な書き方</a></li>
+     <li><a href="#usage">HTML 文書内での CSS の適用方法</a></li>
+     <li><a href="#sample">CSS ファイルの具体例</a></li>
+     <li><a href="#references">参考文献</a></li>
+  </ul></ol>
+
+</td></tr>
+
+</tbody></table>
+</div>
+
+<hr noshade="noshade" size="1"><div class="MAIN">
+
+<h2><a name="intro">[6.1] スタイルシートとは</a></h2>
+
+<p>
+スタイルシートとは, HTML 文書の文字の書体や色, 上下左右の余白(マージン)などのデザイン
+(書式)を指定するためのものです. 
+</p>
+
+<p>
+HTML のバージョンが上るにつれて, HTML の文書構造(見出し, 段落, 箇条書など)だけでなく,
+文字の書体や色などの書式を指定するタグが追加されるようになりました. しかし, HTML 
+ファイル中に構造と書式が混在することで以下のようなデメリットが生じるようになりました
+
+</p><ul>
+<li> HTML ファイルの見通しが悪くなる </li>
+<li> 同じ書式を複数の場所で用いる場合, 同じタグを何度も書かなければならない </li>
+<li> 書式の変更の手間が大きい </li>
+<li> 複数の HTML ファイルに同じ書式をもたせる(デザインを統一する)手間が大きい </li>
+</ul>
+
+そこで HTML ファイルには文書の構造だけを記述し, 文書の書式に関する部分を独立させて,
+両者を連係させる方法をとることにしました. この「文書の書式に関する部分」が
+スタイルシートに該当します.
+<p></p>
+
+<p>
+スタイルシートの標準として用いられているのは W3C が策定した「<b>CSS</b>」
+(Cascading Style Sheet) です. CSS には現在 3 つのレベルが定義されています.
+
+</p><ul>
+<li> <b>CSS レベル 1</b>: W3C が最初に策定した CSS の規格. 1996 年 12 月に勧告されました.</li>
+
+<li> <b>CSS レベル 2</b>: CSS レベル 1 の拡張仕様. 1998 年 5 月に勧告されました. 
+     2011 年 6 月には改訂版の CSS レベル 2.1 が勧告され, 現在の主要なブラウザは
+     これにほぼ対応しています.</li>
+
+<li><b>CSS レベル 3</b>: 最新の CSS の規格で, 現在策定が勧められています. </li>
+
+</ul>
+
+<h2><a name="basic">[6.2] CSS の基本的な書き方</a></h2>
+
+<p>
+CSS では以下のような形式で, 書式を指定する対象と設定する項目/値を指定します
+</p>
+
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre> <strong><b>セレクタ{ プロパティ: 値; プロパティ: 値; ...}</b></strong>
+</pre></td></tr></tbody></table>
+
+<ul>
+  <li><b>セレクタ</b>: 書式を指定する対象. 具体的には HTML のタグ, ID, クラスを記述します.</li>
+  <li><b>プロパティ</b>: 設定したい書式の種類. 文字の大きさ, 文字の色, 文字の幅などさまざまなものがあります.</li>
+  <li><b>値</b>: 個々のプロパティに対する設定値. プロパティによって値の設定方法は異なります. 
+</li></ul>
+
+<p>
+具体例を以下に示します.
+</p>
+
+<h4>
+例 1: 文書全体のマージン(余白)を 10 ピクセル(= 7.5 ポイント)に指定する.</h4>
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre> body{ margin : 10px;}
+</pre></td></tr></tbody></table>
+
+
+<h4>
+例 2: 全ての段落の文字サイズを 12 ポイントにし, 色を青にする.</h4>
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre> p{ font-size : 12pt; color : blue;}
+</pre></td></tr></tbody></table>
+
+
+<h2><a name="usage">[6.3] HTML 文書内での CSS の適用方法</a></h2>
+
+<p>
+HTML 文書内で CSS を適用させるには 3 つの方法があります.
+</p>
+
+<h3>[6.3.1] インラインスタイルシート</h3>
+
+<p>
+これは HTML タグ内で直接 CSS を適用する方法です. 以下のように指定します.
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre> &lt;XX <strong><b>style="プロパティ : 値; プロパティ : 値; ..."</b></strong>&gt;...<!--&lt;/XX&gt;
+</PRE--></pre></td></tr></tbody></table>
+</p>
+<p>
+この場合 HTML 文書内で文書の構造と書式が混在することになるので, CSS を用いるメリットがあまりありません. よってこのような使い方はあまり推奨されません. 
+</p>
+
+<h3>[6.3.2] 埋め込みスタイルシート</h3>
+
+<p>
+これは 1 つの HTML 文書の中だけで CSS を適用する方法です. 以下のように指定します.
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre> &lt;HTML&gt;
+   &lt;HEAD&gt;
+   <strong><b>&lt;STYLE TYPE="text/css"&gt;
+   &lt;!--
+     セレクタ{ プロパティ: 値; プロパティ: 値; ...}     
+     セレクタ{ プロパティ: 値; プロパティ: 値; ...}
+     ...
+   --&gt;
+   &lt;/STYLE&gt;</b></strong>
+   &lt;/HEAD&gt;
+ ...
+
+ &lt;/HTML&gt;
+</pre></td></tr></tbody></table>
+</p>
+
+<p>
+HTML の HEAD タグ内に "STYLE" 要素を作り, スタイルシートを記述します. 
+スタイルシート部分が "&lt;!-- ...    --&gt;" で囲まれているのは,
+スタイルシートに対応していないブラウザではコメント行として扱われるようにするためです.
+</p>
+
+<h3>[6.3.3] 別ファイルからの読み込みスタイルシート</h3>
+
+<p>
+HTML 文書とは別に CSS だけを記述したファイル(以下これを CSS ファイルと呼びます)
+を作成しておき, それを HTML ファイルから読み込んで CSS を適用する方法です. 
+以下のように指定します.
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre> &lt;HTML&gt;
+   &lt;HEAD&gt;
+   <strong><b>&lt;LINK REL="stylesheet" HREF="CSS ファイルの URL" TYPE="text/css"&gt;</b></strong>
+   ...
+   &lt;/HEAD&gt;
+ ...
+
+ &lt;/HTML&gt;
+</pre></td></tr></tbody></table>
+</p>
+
+<p>
+「埋め込みスタイルシート」の場合と同様に, HEAD タグ内で指定します. ただしこの場合は
+"STYLE" 要素ではなく "LINK" 要素を用います. "HREF" の値で指定される CSS ファイルには,
+「セレクタ{ プロパティ: 値; プロパティ: 値; ...}」の部分を列挙しておきます. 
+CSS ファイルの名前には拡張子 ".css" を付けるのが慣例となっています. 
+CSS ファイルは HTML ファイルと同じ WWW サーバ内ファイルでも外部の WWW サーバのファイルのどちらも指定することができます. 
+</p>
+
+<h4>例1: 同じ WWW サーバ内の CSS ファイルを読み込む場合</h4>
+
+
+<p>HTML ファイルと CSS ファイル (style.css) が同じディレクトリにある場合はこのように指定します
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre> &lt;HTML&gt;
+   &lt;HEAD&gt;
+   <strong><b>&lt;LINK REL="stylesheet" HREF="style.css" TYPE="text/css"&gt;</b></strong>
+   ...
+   &lt;/HEAD&gt;
+ ...
+
+ &lt;/HTML&gt;
+</pre></td></tr></tbody></table>
+</p><p>
+ファイルの指定は相対パスでも絶対パスでも可能です. ただし絶対パスで指定する場合は
+apache の設定ファイル /etc/apache2/sites-available/default の "DocumentRoot" 
+ディレクティブで指定されたディレクトリをルートディレクトリとして見た場合の絶対パスに
+なります.
+</p>
+
+<h4>例2: 外部の WWW サーバの CSS ファイルを読み込む場合</h4>
+
+<p>別の WWW サーバにある CSS ファイルを読み込む場合は以下のように指定します.
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre> &lt;HTML&gt;
+   &lt;HEAD&gt;
+   <strong><b>&lt;LINK REL="stylesheet" HREF="http://wwww.hoge.hero.jp/css/style.css" TYPE="text/css"&gt;</b></strong>
+   ...
+   &lt;/HEAD&gt;
+ ...
+
+ &lt;/HTML&gt;
+</pre></td></tr></tbody></table>
+</p>
+<p>
+この場合, 別の WWW サーバにある CSS ファイルの利用許可を得ておく必要があります.
+無断で利用するのはやめましょう.
+</p>
+
+<h3>[6.3.4] スタイルシートの優先順位</h3>
+
+<p>
+上記の 3 つの方法は併用することもできます. このとき同じセレクタのプロパティに対し異なる値が設定され, 競合することが起こりえます. その場合の優先順位は
+</p><ol>
+  <li>インラインスタイルシート</li>
+  <li>埋め込みスタイルシート</li>
+  <li>読み込みスタイルシート</li>
+</ol>
+の順番になります.
+<p></p>
+
+<h2><a name="sample">[6.4] CSS ファイルの具体例</a></h2>
+
+<p>
+ここでは CSS ファイルの具体例を見ていきます. じつはこの文書も CSS ファイルを使用しています. URL は <a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/css/jitsugi.css">
+http://www.ep.sci.hokudai.ac.jp/~inex/y2013/css/jitsugi.css</a> です. 
+このなかから基本的なタグに対する書式について抜粋して解説します.
+</p>
+
+<table class="COMMAND">
+<tbody><tr><td class="COMMAND"><pre>BODY{                       本文に対する書式
+    background: white;      背景色を白に指定
+}
+
+H1{                         見出しに対する書式
+    font-size: 200%;        文字サイズを 2 倍に
+    background: #CCCC99;    背景色に関する標準値を #CCCC99 (若草色)
+    width: 100%;            H1 タグのボックス幅をブラウザ幅と同じに
+    border-style: solid;    ボーダー(本文を囲む枠線)を実線に
+    border-width: 1;        ボーダー幅を指定(最も細いレベル)
+    border-color: white;    ボーダーの色を白に指定
+    padding: 5px;           内容とボーダーとの間の余白を 5 ピクセルに
+}
+STRONG{                     強調に対する書式
+    font-weight: normal;    文字の太さを標準値に指定
+    color: red;             文字の色を赤に指定
+}
+P{                          段落に対する書式
+    line-height: 1.3em;     行の高さを 1.3em (1.3 文字分)に指定
+    text-indent: 1em;       一行目の字下げを 1em (1 文字分)に指定
+}
+</pre></td></tr></tbody></table>
+
+<p>
+この文書の CSS ファイルを変更した場合に書式がどのように変化するか,
+以下のリンクをたどってその違いを実感してください. 
+
+</p><ul>
+  <li><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/06_css-nocss.html" target="_blank">CSS ファイルを読み込まない場合</a></li>
+  <li><a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/practical/06_css-dcmodel.html" target="_blank">別の CSS ファイルを読み込んだ場合</a></li>
+</ul>
+<p></p>
+
+
+<h2><a name="references">[6.5] 参考文献</a></h2>
+
+<p>
+CSS のプロパティとその値は非常に多く定められています. その全てをこの文書で解説することはできませんので, より詳しく知りたい方のために参考文献を挙げておきます.
+</p>
+
+<ul>
+  <li>藤本 壱, 2013, 改訂新版 スタイルシートポケットリファレンス [CSS3 対応],
+      技術評論社, ISBN 978-4-7741-5486-2<br>
+      (<a href="http://gihyo.jp/book/2013/978-4-7741-5486-2" target="_blank">http://gihyo.jp/book/2013/978-4-7741-5486-2</a>)
+  </li>
+</ul>
+
+
+
+</div><hr noshade="noshade" size="1"><div class="MAIN">
+
+<a href="http://www.ep.sci.hokudai.ac.jp/%7Einex/y2013/0712/index.html">情報実験第十一回のページへ戻る</a><br>
+
+</div><hr noshade="noshade" size="1">
+<table width="100%"><tbody><tr><td><small>最終更新日：
+<!-- 更新日情報
+2013/07/08(小高 正嗣)
+2013/07/09(小高 正嗣)
+-->
+2013/07/09(小高 正嗣)
+</small></td><td align="right"><small> Copyright &#169; 2000-2013 inex
+</small></td></tr></tbody></table>
+
+
+</body></html>
